@@ -4,3 +4,7 @@ main,
 	max-width: $size-page--maxwidth;
 	margin: 0 auto;
 }
+
+a {
+	@include transition-duration(0.4s);
+}

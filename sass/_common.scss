@@ -68,3 +68,8 @@ textarea,
 	position: relative;
 	width: 100%;
 }
+
+.border-radius,
+%border-radius {
+	@include border-radius: $border-radius;
+}

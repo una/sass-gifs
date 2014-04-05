@@ -1,13 +1,24 @@
 {% extends "_layout" %}
 
 {% block content %}
-	<article>
-		<h1>{{ entry.heading }}</h1>
+	<article role="main">
+		<h1>Concept: {{ entry.heading }}</h1>
 		<figure class="gif">
 			{% for image in entry.gifImage %}
 					<img class="gif" src="{{ image.url }}" alt="{{ entry.title }}">
 				{% endfor %}
 			<figcaption class="explanation">{{ entry.explanation }}</figcaption>
 		</figure>
+		<section class="tags">
+		{% set tags = entry.tags %}
+		{% if tags | length %}
+		    <h3>Related Tags:</h3>
+		    <ul class="tag-list">
+			    {% for tag in tags %}
+			      <li>{{ tag.name }}</li>
+			    {% endfor %}
+		    </ul>
+		{% endif %}
+		</section>
 	</article>
 {% endblock %}

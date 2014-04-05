@@ -1,6 +1,4 @@
-figure {
-	
-	
+.gif {
 	img {
 		width: 50%;
 		@extend %fl-l;
@@ -8,9 +6,43 @@ figure {
 	figcaption {
 		width: 50%;
 		@extend %fl-l;
+		
+		p {
+			font-size: 1.25em;
+			line-height: 1.5;
+			background-color: $color-background-subtle;
+			padding: 1em;
+		}
+		
+		a {
+			text-decoration: underline;
+			color: $color-text-link;
+			&:hover {
+				color: $color-text-link-hover;
+			}
+		}
 	}
 }
 
 article {
-	@extend %row;
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+	
+	h1 {
+	font-size: 2.5em;
+	font-weight: 800;
+	margin: 1em;
+	}
+}
+
+.tags {
+	font-size: 0.6em;
+	.tag-list {
+		li {
+			float: left;
+			display: inline-block;
+			@extend %border-radius;
+		}
+	} 
 }

@@ -126,7 +126,7 @@ return array(
 	/**
 	 * Determines whether the system is in Dev Mode or not.
 	 */
-	'devMode' => true,
+	'devMode' => false,
 
 	/**
 	 * Any environment-specific variables that should be swapped out in URL and Path settings.

@@ -21,12 +21,15 @@ $color-primary: $hopbush;
 $color-accent: $patina;
 $color-background: $white;
 $color-background-shade: $iron;
+$color-background-subtle: lighten($color-background-shade, 10%);
 $color-background-invert: $hopbush;
+$color-background-code: $regent-grey;
+$color-text-code: $nebula;
 $color-text: darken($pale-sky, 15);
 $color-text-weak: $regent-grey;
 $color-text-strong: $midnight-blue;
 $color-text-heading: $regent-grey;
-$color-text-invert: rgba($color-background, .75);
+$color-text-invert: rgba($color-background, .9);
 $color-text-strong-invert: $color-background;
 $color-text-link: $color-primary;
 $color-text-link-visited: $bouquet;
@@ -37,7 +40,8 @@ $color-border: $iron;
 	SIZES
 */
 
-$size-page--maxwidth: 1000px;
+$size-page--maxwidth: 1100px;
+$border-radius: 3px;
 
 
 /* 
