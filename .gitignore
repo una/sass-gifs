@@ -1,0 +1,5 @@
+.DS_Store
+public/.sass-cache
+craft/config/license.key
+craft/config/dp.php
+craft/storage/
