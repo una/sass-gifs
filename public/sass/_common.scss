@@ -1,0 +1,69 @@
+// Sass Things And Such
+
+//clear form styling
+input,
+textarea,
+*:focus {
+	-webkit-appearance: none;
+	-webkit-box-shadow: none;
+	background: none;
+	border: none;
+	box-shadow: none;
+	outline: 0;
+}
+
+//rem font size
+@mixin font-size($size) {
+	font-size: $size + px;
+	font-size: ($size/16) + rem;
+}
+
+//border-box all of the things
+* {
+	@include box-sizing(border-box);
+}
+
+//Keyframes
+@mixin keyframes($name) {
+	@-webkit-keyframes #{$name} {
+		@content; 
+	}
+	@-moz-keyframes #{$name} {
+		@content;
+	}
+	@-ms-keyframes #{$name} {
+		@content;
+	}
+	@keyframes #{$name} {
+		@content;
+	} 
+}
+
+//frequently styles
+%fl-l,
+.fl-l {
+	float: left;
+}
+
+%fl-r,
+.fr-r {
+	float: right;
+}
+
+%white,
+.white {
+	color: white;
+}
+
+%center,
+.center {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.row {
+	overflow: hidden;
+	position: relative;
+	width: 100%
+}
