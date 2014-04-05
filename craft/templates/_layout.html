@@ -10,34 +10,34 @@
 </head>
 
 <body>
-	<div id="container">
-		<header id="header">
-			<h1><a href="{{ siteUrl }}">{{ siteName }}</a></h1>
-			<div class="searchbar"></div>
-		</header>
-		<nav>
-			<h1>Topics</h1>
-			<ul>
-				{% for entry in craft.entries.section('Lesson').find() %}
-					<li>
-						<a href="{{ entry.url }}" {% if craft.request.firstSegment == 'entry.slug' %}class="active"{% endif %}>
-							{{ entry.title }}
-						</a>
-					</li>
-				{% endfor %}
-			</ul>
-		</nav>
+	<header id="header">
+		<h1><a href="{{ siteUrl }}">{{ siteName }}</a></h1>
+		<div class="searchbar"></div>
+	</header>
+	<nav>
+		<h1>Topics</h1>
+		<ul>
+			{% for entry in craft.entries.section('Lessons').find() %}
+				<li>
+					<a href="{{ entry.slug }}" {% if craft.request.firstSegment == 'entry.slug' %}class="active"{% endif %}>
+						{{ entry.title }}
+					</a>
+				</li>
+			{% endfor %}
+		</ul>
+	</nav>
 
-		<main id="content" role="main">
-			{% block content %}
-				<p>If you see me, you haven’t set your <code>{% verbatim %}{% block content %}…{% endblock %}{% endverbatim %}</code> yet.</p>
-				<p>See Twig’s <a href="http://twig.sensiolabs.org/doc/templates.html#template-inheritance">Template Inheritance</a> documentation for an explanation.</p>
-			{% endblock %}
-		</main>
+	<main id="content" role="main">
+		{% block content %}
+			<p>If you see me, you haven’t set your <code>{% verbatim %}{% block content %}…{% endblock %}{% endverbatim %}</code> yet.</p>
+			<p>See Twig’s <a href="http://twig.sensiolabs.org/doc/templates.html#template-inheritance">Template Inheritance</a> documentation for an explanation.</p>
+		{% endblock %}
+	</main>
 
-		<footer id="footer">
-			Copyright {{ now.year }} {{ craft.request.serverName | ucfirst }}. All rights reserved  •  Built with <a href="http://buildwithcraft.com">Craft</a>
-		</footer>
-	</div>
+	<footer id="footer">
+		<div class="container">
+			Copyright {{ now.year }} {{ craft.request.serverName | ucfirst }}. All rights reserved  •  Built with love in <a href="http://buildwithcraft.com">Craft</a>
+		</div>
+	</footer>
 </body>
 </html>

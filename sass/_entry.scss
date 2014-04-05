@@ -1,0 +1,16 @@
+figure {
+	
+	
+	img {
+		width: 50%;
+		@extend %fl-l;
+	}
+	figcaption {
+		width: 50%;
+		@extend %fl-l;
+	}
+}
+
+article {
+	@extend %row;
+}
