@@ -14,9 +14,9 @@ $wafer: #e1d7d2;
 $iron: #dadbdf;
 $regent-grey: #808c99;
 $pale-sky: #6b717f;
-$midnight-blu: #036;
+$midnight-blue: #036;
 
-$color-shadow: rgba($black, .125);
+$color-shadow: rgba(black, .125);
 $color-primary: $hopbush;
 $color-accent: $patina;
 $color-background: $white;
@@ -38,3 +38,11 @@ $color-border: $iron;
 */
 
 $size-page--maxwidth: 1100px;
+
+
+/* 
+	TYPOGRAPHY
+*/
+$font-family-headers	'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$font-family-copy	'Radley', 'Times New Roman', serif;
+$font-family-code	'Source Code Pro', 'Courier New', Courier, monospace;
