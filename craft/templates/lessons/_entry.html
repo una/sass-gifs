@@ -5,8 +5,8 @@
 		<h1>Concept: {{ entry.heading }}</h1>
 		<figure class="gif">
 			{% for image in entry.gifImage %}
-					<img class="gif" src="{{ image.url }}" alt="{{ entry.title }}">
-				{% endfor %}
+				<img class="gif" src="{{ image.url }}" alt="{{ entry.title }}">
+			{% endfor %}
 			<figcaption class="explanation">{{ entry.explanation }}</figcaption>
 		</figure>
 		<section class="tags">

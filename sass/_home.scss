@@ -1,0 +1,11 @@
+.lesson-list--home {
+	@extend %row;
+	li {
+		width: 30%;
+		float: left;
+		display: block;
+		img {
+			width: 100%;
+		}
+	}
+}

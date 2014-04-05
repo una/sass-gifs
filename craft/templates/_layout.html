@@ -14,6 +14,12 @@
 		<h1><a href="{{ siteUrl }}">{{ siteName }}</a></h1>
 		<div class="searchbar"></div>
 	</header>
+	<section class="search">
+		<form action="{{ url('search/results') }}">
+		    <input type="search" name="q" placeholder="Search">
+		    <input type="submit" value="Go">
+		</form>
+	</section>
 	<nav>
 		<h1>Topics</h1>
 		<ul>
