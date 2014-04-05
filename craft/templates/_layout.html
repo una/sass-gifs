@@ -10,16 +10,10 @@
 </head>
 
 <body>
+	<section class="sidebar">
 	<header id="header">
-		<h1><a href="{{ siteUrl }}">{{ siteName }}</a></h1>
-		<div class="searchbar"></div>
-	</header>
-	<section class="search">
-		<form action="{{ url('search/results') }}">
-		    <input type="search" name="q" placeholder="Search">
-		    <input type="submit" value="Go">
-		</form>
-	</section>
+		<h1><a class="logo" href="{{ siteUrl }}">{{ siteName }}</a></h1>
+		</header>
 	<nav>
 		<h1>Topics</h1>
 		<ul>
@@ -32,6 +26,13 @@
 			{% endfor %}
 		</ul>
 	</nav>
+</section>
+<section class="searchbar">
+	<form action="{{ url('results') }}" role="search">
+		    <input type="search" name="q" placeholder="Search">
+		    <input type="submit" value="Go">
+	</form>
+</section>
 
 	<main id="content" role="main">
 		{% block content %}

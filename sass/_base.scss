@@ -8,3 +8,8 @@ main,
 a {
 	@include transition-duration(0.4s);
 }
+
+::selection {
+	background-color: $midnight-blue;
+	color: white;
+}

@@ -9,9 +9,18 @@
 {% if entries|length %}
     <p>{{ entries|length }} results:</p>
 
-    <ul>
+    <ul class="lesson-list--results">
         {% for entry in entries %}
-            <li><a href="{{ entry.url }}">{{ entry.title }}</a></li>
+            <li>
+            <a href="{{ entry.url }}">
+            	<figure>
+            		{% for image in entry.gifImage %}
+            			<img class="gif" src="{{ image.url }}" alt="{{ entry.title }}">
+            		{% endfor %}
+            		<figcaption>{{ entry.title }}</figcaption>
+            	</figure>
+            </a>
+            </li>
         {% endfor %}
     </ul>
 {% else %}

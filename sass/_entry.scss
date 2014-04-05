@@ -1,8 +1,11 @@
 .gif {
+	@extend %row;
+	
 	img {
 		width: 50%;
 		@extend %fl-l;
 	}
+
 	figcaption {
 		width: 50%;
 		@extend %fl-l;
@@ -25,9 +28,7 @@
 }
 
 article {
-	overflow: hidden;
-	position: relative;
-	width: 100%;
+	
 	
 	h1 {
 	font-size: 2.5em;
@@ -37,13 +38,15 @@ article {
 }
 
 .tags {
+	@extend %row;
 	font-size: 0.6em;
+	margin-bottom: 1em;
 	.tag-list {
 		li {
 			float: left;
 			display: inline-block;
-			@extend %border-radius;
-			background-color: $color-background-shade;
+			// @extend %border-radius;
+			border: 1px solid $color-background-shade;
 			padding: 0.2em 0.4em;
 			margin-right: 0.4em;
 		}
