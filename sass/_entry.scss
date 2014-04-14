@@ -46,6 +46,7 @@ article {
 			float: left;
 			display: inline-block;
 			// @extend %border-radius;
+			background-color: $color-background-subtle;
 			border: 1px solid $color-background-shade;
 			padding: 0.2em 0.4em;
 			margin-right: 0.4em;

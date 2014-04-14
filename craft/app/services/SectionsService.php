@@ -259,9 +259,6 @@ class SectionsService extends BaseApplicationComponent
 	 */
 	public function saveSection(SectionModel $section)
 	{
-		// This might take a while
-		craft()->config->maxPowerCaptain();
-
 		if ($section->id)
 		{
 			$sectionRecord = SectionRecord::model()->with('structure')->findById($section->id);

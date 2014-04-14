@@ -3,8 +3,9 @@
 	height: 100%;
     width: 160px;
     margin-right: 100px;
-    box-shadow: inset -10px 0 10px -5px hsla(0,0%,0%,.05);
+    // box-shadow: inset -10px 0 10px -5px hsla(0,0%,0%,.05);
     background-color: $color-background-subtle;
+    border-right: 1px solid $color-background-shade;
     top: 0;
 	bottom: 0;
 	padding: 1em;

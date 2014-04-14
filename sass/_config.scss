@@ -19,6 +19,7 @@ $midnight-blue: #036;
 $color-shadow: rgba(black, .125);
 $color-primary: $hopbush;
 $color-accent: $patina;
+$color-titles: $midnight-blue;
 $color-background: $white;
 $color-background-shade: $iron;
 $color-background-subtle: lighten($color-background-shade, 10%);
@@ -42,11 +43,12 @@ $color-border: $iron;
 
 $size-page--maxwidth: 1100px;
 $border-radius: 3px;
-
+$footer-height: 3em;
 
 /* 
 	TYPOGRAPHY
 */
+$font-family-decorative: 'Elsie Swash Caps', Garamond, sans-serif;
 $font-family-headers: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $font-family-copy: 'Radley', 'Times New Roman', serif;
 $font-family-code: 'Source Code Pro', 'Courier New', Courier, monospace;

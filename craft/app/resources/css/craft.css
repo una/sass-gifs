@@ -1169,7 +1169,7 @@ body .redactor_box_fullscreen { z-index: 100 !important; }
 
 body .redactor_toolbar { background: none; -webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none; }
 
-body .redactor_toolbar.toolbar_fixed_box { background: #fff; -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05), 0 2px 8px -2px rgba(0, 0, 0, 0.1); -moz-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05), 0 2px 8px -2px rgba(0, 0, 0, 0.1); box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05), 0 2px 8px -2px rgba(0, 0, 0, 0.1); }
+body .redactor_toolbar.toolbar_fixed_box { background: #fff; -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05), 0 2px 8px -2px rgba(0, 0, 0, 0.1); -moz-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05), 0 2px 8px -2px rgba(0, 0, 0, 0.1); box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05), 0 2px 8px -2px rgba(0, 0, 0, 0.1); z-index: 1 !important; }
 
 body .redactor_toolbar li a { color: #29323d; }
 

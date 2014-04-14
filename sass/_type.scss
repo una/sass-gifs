@@ -47,3 +47,26 @@ strong {
 	color: $color-text-invert;
 	padding: 0 0.2em;
 }
+
+.header-home {
+	text-align: center;
+	h1 {
+		font-family: $font-family-decorative;
+		font-size: 4em;
+		margin: 1em auto 0;
+		color: $color-titles;
+		
+		text-shadow: 1px 2px 0px white,
+		              0 0 0 $color-background-shade,
+		              -1px 1px 0 white,
+		              5px 5px 0 $color-background-shade;
+	}
+
+	h2 {
+		font-family: $font-family-copy;
+		font-size: 1.5em;
+		font-weight: 100;
+		margin: 0em auto 1em;
+		color: #699;
+	}
+}

@@ -268,7 +268,7 @@ body.rtl #footer #upgradepromo a .go:after { padding-right: 5px; }
 
 #upgrademodal .body tr.buybtns .installed + br + .btngroup { margin-top: 10px; }
 
-#upgrademodal .body tr.buybtns .listedprice { margin-right: 10px; text-decoration: line-through; color: #b8bfc6; }
+#upgrademodal .body .listedprice { margin-right: 10px; text-decoration: line-through; color: #b8bfc6; }
 
 #upgrademodal-compare table thead th { text-align: center; }
 
