@@ -6,12 +6,11 @@
 	<link rel="home" href="{{ siteUrl }}" />
 	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro:500|Radley:400,400italic' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Elsie+Swash+Caps:900' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="stylesheets/main.css">
+	<link rel="stylesheet" href="/stylesheets/main.css">
 
 </head>
 
 <body>
-	<section class="sidebar">
 	<header id="header">
 		<h1><a class="logo" href="{{ siteUrl }}">{{ siteName }}</a></h1>
 		</header>
@@ -27,7 +26,7 @@
 			{% endfor %}
 		</ul>
 	</nav>
-</section>
+
 <section class="searchbar">
 	<form action="{{ url('results') }}" role="search">
 		    <input type="search" name="q" placeholder="Search">

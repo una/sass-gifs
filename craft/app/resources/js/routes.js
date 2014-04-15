@@ -198,7 +198,7 @@ var RouteSettingsModal = Garnish.Modal.extend(
 								'<td>';
 		}
 
-		containerHtml += '<div id="url" class="text url"></div>';
+		containerHtml += '<div id="url" class="text url ltr"></div>';
 
 		if (Craft.routes.locales)
 		{
@@ -232,7 +232,7 @@ var RouteSettingsModal = Garnish.Modal.extend(
 					'<div class="heading">' +
 						'<label for="template">'+Craft.t("Load this template")+':</label>' +
 					'</div>' +
-					'<input id="template" type="text" class="text fullwidth template">' +
+					'<input id="template" type="text" class="text fullwidth template ltr">' +
 				'</div>' +
 			'</div>' +
 			'<div class="footer">' +
@@ -264,7 +264,9 @@ var RouteSettingsModal = Garnish.Modal.extend(
 		}
 
 		// Initialize the URL input
-		this.urlInput = new Garnish.MixedInput(this.$urlInput);
+		this.urlInput = new Garnish.MixedInput(this.$urlInput, {
+			dir: 'ltr'
+		});
 
 		// Set the heading
 		if (this.route)
@@ -451,9 +453,9 @@ var RouteSettingsModal = Garnish.Modal.extend(
 						}
 
 						routeHtml +=
-									'<span class="url"></span>' +
+									'<span class="url" dir="ltr"></span>' +
 								'</div>' +
-								'<div class="template"></div>' +
+								'<div class="template" dir="ltr"></div>' +
 							'</div>';
 
 						var $route = $(routeHtml);

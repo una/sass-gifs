@@ -973,6 +973,9 @@ class ElementsService extends BaseApplicationComponent
 
 					if (!$success)
 					{
+						// Pass any validation errors on to the element
+						$element->addErrors($localeRecord->getErrors());
+
 						// Don't bother with any of the other locales
 						break;
 					}
@@ -1040,11 +1043,11 @@ class ElementsService extends BaseApplicationComponent
 							}
 						}
 					}
-				}
 
-				// Finally, delete any caches involving this element
-				// (Even do this for new elements, since they might pop up in a cached criteria.)
-				craft()->templateCache->deleteCachesByElement($element);
+					// Finally, delete any caches involving this element
+					// (Even do this for new elements, since they might pop up in a cached criteria.)
+					craft()->templateCache->deleteCachesByElement($element);
+				}
 			}
 
 			if ($transaction !== null)

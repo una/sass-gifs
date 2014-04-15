@@ -67,7 +67,16 @@ class MatrixBlockModel extends BaseElementModel
 		}
 		else
 		{
-			return $this->getOwner()->getLocales();
+			$owner = $this->getOwner();
+
+			if ($owner)
+			{
+				return $owner->getLocales();
+			}
+			else
+			{
+				return array();
+			}
 		}
 	}
 

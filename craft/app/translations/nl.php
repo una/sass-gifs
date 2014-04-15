@@ -444,6 +444,7 @@ return array(
 	'Initial Rows' => 'Vooringestelde rijen',
 	'Insert URL' => 'Voeg de URL in',
 	'Insert image' => 'Voeg de afbeelding in',
+	'Insert link' => 'Link invoegen',
 	'Install' => 'Installeren',
 	'Install Craft' => 'Craft installeren',
 	'Installed' => 'Geïnstalleerd',
@@ -610,6 +611,7 @@ return array(
 	'Off' => 'Uit',
 	'On' => 'Aan',
 	'One update available!' => 'Eén update beschikbaar!',
+	'One “Client” account' => 'Een “Client” account',
 	'Oops!' => 'Oeps!',
 	'Option Label' => 'Optie-label',
 	'Options' => 'Opties',
@@ -736,7 +738,7 @@ return array(
 	'Section' => 'Sectie',
 	'Section - {section}' => 'Sectie - {section}',
 	'Section Type' => 'Sectietype',
-	'Section and entry locale targetting' => 'Sectie en toegang tot targetting op de plaats van handeling',
+	'Section and entry locale targeting' => 'Sectie en toegang tot targetting op de plaats van handeling',
 	'Section saved.' => 'Sectie bewaard.',
 	'Sections' => 'Secties',
 	'See how' => 'Zie hoe',
@@ -931,6 +933,7 @@ return array(
 	'Unauthorized' => 'Onbevoegd',
 	'Uninstall' => 'Deïnstalleren',
 	'Unknown' => 'Onbekend',
+	'Unlimited' => 'Onbeperkt',
 	'Unlimited Singles and Channels' => 'Onbeperkte singles en kanalen',
 	'Unlink' => 'Link ontkoppelen',
 	'Unlock' => 'Activeer',
@@ -1047,6 +1050,13 @@ return array(
 	'You’re all up-to-date!' => 'Je bent up-to-date!',
 	'You’re running Craft {edition} with a Craft {licensedEdition} license.' => 'U laat Craft {editie} lopen met een Craft- {erkende editie} licentie',
 	'You’ve got updates!' => 'U heeft updates!',
+	'account_activation_body' => 'Hallo {{user.friendlyName}},
+
+Bedankt voor het maken van een account op {{siteName}}! Klik op de volgende link om je account te activeren:
+
+{{link}}
+
+Als je deze email niet verwachtte, kun je hem gewoon negeren.',
 	'account_activation_heading' => 'Als iemand een account aanmaakt:A',
 	'account_activation_subject' => 'Activeer je account',
 	'build {build}' => '{build} bouwen',
@@ -1060,8 +1070,15 @@ return array(
 	'five' => 'vijf',
 	'folders' => 'mappen',
 	'folders and files' => 'mappen en bestanden',
+	'forgot_password_body' => 'Hallo {{user.friendlyName}},
+
+Klik op de volgende link om je wachtwoord voor {{siteName}} te resetten:
+
+{{link}}
+
+Als je deze email niet verwachtte, kun je hem gewoon negeren.',
 	'forgot_password_heading' => 'Als iemand zijn wachtwoord vergeet:',
-	'forgot_password_subject' => 'Reset je wachtwoordHallo ',
+	'forgot_password_subject' => 'Reset je wachtwoordHallo',
 	'four' => 'vier',
 	'hour' => 'uur',
 	'hours' => 'uren',
@@ -1078,9 +1095,24 @@ return array(
 	'seconds' => 'seconden',
 	'seven' => 'zeven',
 	'six' => 'zes',
+	'test_email_body' => 'Hallo {{user.friendlyName}},
+
+Gefeliciteerd! Craft heeft succesvol een email verstuurd.
+
+Hier zijn de gebruikte instellingen:
+
+{% for key, setting in settings %}{{ key }}: {{ setting }}
+{% endfor %}',
 	'test_email_subject' => 'Dit is een test-email van Craft',
 	'three' => 'drie',
 	'two' => 'twee',
+	'verify_new_email_body' => 'Hallo {{user.friendlyName}},
+
+Klik op deze link om je nieuwe emailadres te bevestigen:
+
+{{link}}
+
+Als je deze email niet verwachtte, kun je hem gewoon negeren.',
 	'verify_new_email_heading' => 'Als iemand zijn email-adres wijzigt:',
 	'verify_new_email_subject' => 'Bevestig je nieuwe email-adres',
 	'week' => 'week',

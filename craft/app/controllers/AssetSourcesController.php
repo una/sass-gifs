@@ -208,7 +208,7 @@ class AssetSourcesController extends BaseController
 	public function actionGetRackspaceRegions()
 	{
 		craft()->userSession->requireAdmin();
-		craft()->requirePackage(CraftPackage::Cloud);
+		craft()->requireEdition(Craft::Pro);
 
 		$username = craft()->request->getRequiredPost('username');
 		$apiKey = craft()->request->getRequiredPost('apiKey');

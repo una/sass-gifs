@@ -611,6 +611,7 @@ return array(
 	'Off' => 'إيقاف التشغيل',
 	'On' => 'تشغيل',
 	'One update available!' => 'يتوفر تحديث واحد!',
+	'One “Client” account' => 'حساب واحد ”عمي“',
 	'Oops!' => 'عذراً!',
 	'Option Label' => 'تسمية الخيار',
 	'Options' => 'خيارات',
@@ -737,7 +738,7 @@ return array(
 	'Section' => 'القسم',
 	'Section - {section}' => 'القسم - {section}',
 	'Section Type' => 'نوع القسم',
-	'Section and entry locale targetting' => 'الاستهداف اللغوي للقسم والإدخال',
+	'Section and entry locale targeting' => 'الاستهداف اللغوي للقسم والإدخال',
 	'Section saved.' => 'تم حفظ القسم.',
 	'Sections' => 'الأقسام',
 	'See how' => 'إظهار الكيفية',
@@ -922,6 +923,7 @@ return array(
 	'URI' => 'معرف URI',
 	'URI cannot be blank.' => 'لا يمكن ترك معرف URI فارغاً.',
 	'URL' => 'عنوان URL',
+	'URL Format' => 'تنسيق عنوان URL',
 	'URL Prefix ' => 'بادئة عنوان URL',
 	'Unable to add the new locale.' => 'تعذرت إضافة اللغة الجديدة.',
 	'Unable to determine URL path info. Please make sure $_SERVER["PATH_INFO"] (or $_SERVER["PHP_SELF"] and $_SERVER["SCRIPT_NAME"]) contains proper value.' => 'تعذر تحديد معلومات مسار عنوان URL. الرجاء التأكد من أن $_SERVER["PATH_INFO"] (أو $_SERVER["PHP_SELF"] و$_SERVER["SCRIPT_NAME"]) يحتوي على قيمة صحيحة.',
@@ -931,6 +933,7 @@ return array(
 	'Unauthorized' => 'غير مخول',
 	'Uninstall' => 'إزالة التثبيت',
 	'Unknown' => 'غير معروف',
+	'Unlimited' => 'غير محدود',
 	'Unlimited Singles and Channels' => 'فرديات وقنوات غير محدودة',
 	'Unlink' => 'إلغاء الرابط',
 	'Unlock' => 'إلغاء القفل',
@@ -1044,8 +1047,16 @@ return array(
 	'Your server does not meet the following minimum requirements for Craft to run:<br /><br/ > {messages}' => 'لا يتطابق الخادم المستخدم لديك مع الحد الأدنى لمتطلبات تشغيل Craft التالية:{br /><br/ > {message>',
 	'Your server doesn’t meet the following requirements to run Craft:' => 'لا يتطابق الخادم المستخدم لديك مع متطلبات تشغيل Craft التالية:',
 	'Your site isn’t set up to save content for the locale “{locale}”.' => 'لم يتم إعداد موقعك لحفظ المحتوى باللغة ”{locale}“.',
+	'You’re all up-to-date!' => 'أنت على آخر تحديث!',
 	'You’re running Craft {edition} with a Craft {licensedEdition} license.' => 'أنت تعمل على نسخة Craft {edition} بترخيص Craft {licensedEdition}.',
 	'You’ve got updates!' => 'لديك تحديثات جديدة!',
+	'account_activation_body' => 'مرحبا {{user.friendlyName}}،
+
+شكراً لإنشائك حساباً في {{siteName}}! لتنشيط حسابك، انقر على الرابط التالي:
+
+{{link}}
+
+إذا لم تكن تتوقع هذه الرسالة، ما عليك سوى تجاهلها.',
 	'account_activation_heading' => 'عندما ينشئ أحدهم حساباً:',
 	'account_activation_subject' => 'تنشيط حسابك',
 	'build {build}' => 'build {build}',
@@ -1059,6 +1070,13 @@ return array(
 	'five' => 'خمسة',
 	'folders' => 'مجلدات',
 	'folders and files' => 'مجلدات وملفات',
+	'forgot_password_body' => 'مرحبا {{user.friendlyName}}،
+
+لإعادة تعيين كلمة المرور الخاصة بك في {{siteName}}، انقر على الرابط التالي:
+
+{{link}}
+
+إذا لم تكن تتوقع هذه الرسالة، ما عليك سوى تجاهلها.',
 	'forgot_password_heading' => 'عندما ينسى أحدهم كلمة المرور الخاصة به:',
 	'forgot_password_subject' => 'إعادة تعيين كلمة المرور الخاصة بك',
 	'four' => 'أربعة',
@@ -1077,9 +1095,25 @@ return array(
 	'seconds' => 'ثانية/ثواني',
 	'seven' => 'سبعة',
 	'six' => 'ستة',
+	'test_email_body' => 'مرحبا {{user.friendlyName}}،
+
+تهانينا! لقد تمكن Craft من إرسال رسالة بنجاح.
+
+فيما يلي الإعدادات التي استخدمتها:
+
+{% for key, setting in settings %}
+{{ key }}:  {{ setting }}
+{% endfor %}',
 	'test_email_subject' => 'هذه رسالة اختبار من Craft',
 	'three' => 'ثلاثة',
 	'two' => 'اثنان',
+	'verify_new_email_body' => 'مرحبا {{user.friendlyName}}،
+
+فضلاً أكد صحة عنوان بريدك الإلكتروني الجديد بالنقر على الرابط التالي:
+
+{{link}}
+
+إذا لم تكن تتوقع هذه الرسالة، ما عليك سوى تجاهلها.',
 	'verify_new_email_heading' => 'عندما يقوم أحدهم بتغيير عنوان بريده الإلكتروني:',
 	'verify_new_email_subject' => 'التأكد من صحة عنوان بريدك الإلكتروني',
 	'week' => 'أسبوع',

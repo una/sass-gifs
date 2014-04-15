@@ -182,9 +182,9 @@ Garnish = $.extend(Garnish, {
 	RETURN_KEY: 13,
 	ESC_KEY:    27,
 	SPACE_KEY:  32,
-	LEFT_KEY:   (Garnish.ltr ? 37 : 39),
+	LEFT_KEY:   37,
 	UP_KEY:     38,
-	RIGHT_KEY:  (Garnish.ltr ? 39 : 37),
+	RIGHT_KEY:  39,
 	DOWN_KEY:   40,
 	A_KEY:      65,
 	S_KEY:      83,
@@ -881,10 +881,10 @@ Garnish.Base = Base.extend({
 						return;
 					}
 
-					var _$elem = $(elem)
-					var resize = 'onresize' in elem;
+					// IE < 11 had a proprietary 'resize' event and 'attachEvent' method.
+					// Conveniently both dropped in 11.
 
-					if (!resize && !_$elem.data('garnish-resizable'))
+					if (!document.attachEvent && !elem.__resizeTriggers__)
 					{
 						// The element must be relative, absolute, or fixed
 						if (getComputedStyle(elem).position == 'static')
@@ -892,62 +892,27 @@ Garnish.Base = Base.extend({
 							elem.style.position = 'relative';
 						}
 
-						// Create the sensor div
-						var $sensor = $('<div class="resize-sensor">' +
-							'<div class="resize-overflow"><div></div></div>' +
-							'<div class="resize-underflow"><div></div></div>' +
-						'</div>').prependTo(_$elem);
+						var $resizeTriggers = $(
+							'<div class="resize-triggers">' +
+								'<div class="expand-trigger"><div></div></div>' +
+								'<div class="contract-trigger"></div>' +
+							'</div>'
+						).prependTo(elem);
 
-						$sensor.add($sensor.children()).css({
-							position: 'absolute',
-							top: 0,
-							left: 0,
-							width: '100%',
-							height: '100%',
-							overflow: 'hidden',
-							'z-index': -1
+						elem.__resizeLast__ = {};
+						elem.__resizeTriggers__ = $resizeTriggers[0];
+
+						resetTriggers(elem);
+						elem.addEventListener('scroll', scrollListener, true);
+
+						// Listen for window resizes too
+						Garnish.$win.on('resize', function()
+						{
+							scrollListener.apply(elem);
 						});
 
-						$sensor.next().addClass('first');
-
-						_$elem.data('garnish-resizable', true);
-
-						var width = elem.offsetWidth,
-							height = elem.offsetHeight,
-							first = $sensor[0].firstElementChild.firstChild,
-							last = $sensor[0].lastElementChild.firstChild,
-
-							testSizeChange = function(ev)
-							{
-								if (width != elem.offsetWidth || height != elem.offsetHeight)
-								{
-									width = elem.offsetWidth;
-									height = elem.offsetHeight;
-
-									updateSensor();
-
-									if (!ev || ev.currentTarget != _$elem[0] || ev.type != 'resize')
-									{
-										_$elem.trigger('resize');
-									}
-								}
-							},
-							updateSensor = function()
-							{
-								first.style.width = width - 1 + 'px';
-								first.style.height = height - 1 + 'px';
-								last.style.width = width + 1 + 'px';
-								last.style.height = height + 1 + 'px';
-							};
-
-						updateSensor();
-						_$elem.on('resize', testSizeChange);
-						Garnish.$win.on('resize', testSizeChange);
-
-						addFlowListener($sensor[0], 'over', testSizeChange);
-						addFlowListener($sensor[0], 'under', testSizeChange);
-						addFlowListener($sensor[0].firstElementChild, 'over', testSizeChange);
-						addFlowListener($sensor[0].lastElementChild, 'under', testSizeChange);
+						// Avoid a top margin on the next element
+						$resizeTriggers.next().addClass('first');
 					}
 				})($elem[i]);
 			}
@@ -974,22 +939,73 @@ Garnish.Base = Base.extend({
 /**
  * Used by our resize detection script
  */
-function addFlowListener(elem, type, func)
+if (!document.attachEvent)
 {
-	var flow = type == 'over';
-
-	elem.addEventListener('OverflowEvent' in window ? 'overflowchanged' : type + 'flow', function(ev)
+	var requestFrame = (function()
 	{
-		if (ev.type == (type + 'flow') ||
-		((ev.orient == 0 && ev.horizontalOverflow == flow) ||
-		(ev.orient == 1 && ev.verticalOverflow == flow) ||
-		(ev.orient == 2 && ev.horizontalOverflow == flow && ev.verticalOverflow == flow)))
+		var raf = window.requestAnimationFrame ||
+				  window.mozRequestAnimationFrame ||
+				  window.webkitRequestAnimationFrame ||
+				  function(fn){ return window.setTimeout(fn, 20); };
+
+		  return function(fn){ return raf(fn); };
+	})();
+
+	var cancelFrame = (function()
+	{
+		var cancel = window.cancelAnimationFrame ||
+					 window.mozCancelAnimationFrame ||
+					 window.webkitCancelAnimationFrame ||
+					 window.clearTimeout;
+
+		return function(id){ return cancel(id); };
+	})();
+
+	var resetTriggers = function(elem)
+	{
+		var triggers    = elem.__resizeTriggers__,
+			expand      = triggers.firstElementChild,
+			contract    = triggers.lastElementChild,
+			expandChild = expand.firstElementChild;
+
+		contract.scrollLeft = contract.scrollWidth;
+		contract.scrollTop  = contract.scrollHeight;
+
+		expandChild.style.width  = expand.offsetWidth + 1 + 'px';
+		expandChild.style.height = expand.offsetHeight + 1 + 'px';
+
+		expand.scrollLeft = expand.scrollWidth;
+		expand.scrollTop  = expand.scrollHeight;
+	}
+
+	var checkTriggers = function(elem)
+	{
+		return elem.offsetWidth  != elem.__resizeLast__.width ||
+			   elem.offsetHeight != elem.__resizeLast__.height;
+	}
+
+	var scrollListener = function(ev)
+	{
+		var elem = this;
+		resetTriggers(elem);
+
+		if (elem.__resizeRAF__)
 		{
-			ev.flow = type;
-			return func.call(this, ev);
+			cancelFrame(elem.__resizeRAF__);
 		}
-	}, false);
-};
+
+		elem.__resizeRAF__ = requestFrame(function()
+		{
+			if (checkTriggers(elem))
+			{
+				elem.__resizeLast__.width  = elem.offsetWidth;
+				elem.__resizeLast__.height = elem.offsetHeight;
+
+				$(elem).trigger('resize');
+			}
+		});
+	}
+}
 
 
 /**
@@ -2729,14 +2745,30 @@ Garnish.LightSwitch = Garnish.Base.extend({
 
 			case Garnish.RIGHT_KEY:
 			{
-				this.turnOn();
+				if (Garnish.ltr)
+				{
+					this.turnOn();
+				}
+				else
+				{
+					this.turnOff();
+				}
+
 				ev.preventDefault();
 				break;
 			}
 
 			case Garnish.LEFT_KEY:
 			{
-				this.turnOff();
+				if (Garnish.ltr)
+				{
+					this.turnOff();
+				}
+				else
+				{
+					this.turnOn();
+				}
+
 				ev.preventDefault();
 				break;
 			}
@@ -3046,7 +3078,11 @@ Garnish.MenuBtn = Garnish.Base.extend({
 });
 
 
-
+/**
+ * Mixed input
+ *
+ * @todo RTL support, in the event that the input doesn't have dir="ltr".
+ */
 Garnish.MixedInput = Garnish.Base.extend({
 
 	$container: null,
@@ -3323,7 +3359,7 @@ var TextElement = Garnish.Base.extend({
 		this.parentInput = parentInput;
 
 		this.$input = $('<input type="text"/>').appendTo(this.parentInput.$container);
-		this.$input.css('margin-'+(Garnish.ltr ? 'right' : 'left'), (2-TextElement.padding)+'px');
+		this.$input.css('margin-right', (2-TextElement.padding)+'px');
 
 		this.setWidth();
 
@@ -3720,13 +3756,13 @@ Garnish.Modal = Garnish.Base.extend({
 		if (Garnish.ltr)
 		{
 			this.desiredWidth = this.resizeStartWidth + (this.resizeDragger.mouseDistX * 2);
-			this.desiredHeight = this.resizeStartHeight + (this.resizeDragger.mouseDistY * 2);
 		}
 		else
 		{
 			this.desiredWidth = this.resizeStartWidth - (this.resizeDragger.mouseDistX * 2);
-			this.desiredHeight = this.resizeStartHeight - (this.resizeDragger.mouseDistY * 2);
 		}
+
+		this.desiredHeight = this.resizeStartHeight + (this.resizeDragger.mouseDistY * 2);
 
 		this.updateSizeAndPosition();
 	},
@@ -4085,6 +4121,40 @@ Garnish.Pill = Garnish.Base.extend({
 		this.$selectedBtn = $btn;
 	},
 
+	selectNext: function()
+	{
+		if (!this.$selectedBtn.length)
+		{
+			this.select(this.$btns[this.$btns.length-1]);
+		}
+		else
+		{
+			var nextIndex = this._getSelectedBtnIndex() + 1;
+
+			if (typeof this.$btns[nextIndex] != 'undefined')
+			{
+				this.select(this.$btns[nextIndex]);
+			}
+		}
+	},
+
+	selectPrev: function()
+	{
+		if (!this.$selectedBtn.length)
+		{
+			this.select(this.$btns[0]);
+		}
+		else
+		{
+			var prevIndex = this._getSelectedBtnIndex() - 1;
+
+			if (typeof this.$btns[prevIndex] != 'undefined')
+			{
+				this.select(this.$btns[prevIndex]);
+			}
+		}
+	},
+
 	onMouseDown: function(ev)
 	{
 		this.select(ev.currentTarget);
@@ -4108,28 +4178,30 @@ Garnish.Pill = Garnish.Base.extend({
 		{
 			case Garnish.RIGHT_KEY:
 			{
-				if (!this.$selectedBtn.length)
-					this.select(this.$btns[this.$btns.length-1]);
+				if (Garnish.ltr)
+				{
+					this.selectNext();
+				}
 				else
 				{
-					var nextIndex = this._getSelectedBtnIndex() + 1;
-					if (typeof this.$btns[nextIndex] != 'undefined')
-						this.select(this.$btns[nextIndex]);
+					this.selectPrev();
 				}
+
 				ev.preventDefault();
 				break;
 			}
 
 			case Garnish.LEFT_KEY:
 			{
-				if (!this.$selectedBtn.length)
-					this.select(this.$btns[0]);
+				if (Garnish.ltr)
+				{
+					this.selectPrev();
+				}
 				else
 				{
-					var prevIndex = this._getSelectedBtnIndex() - 1;
-					if (typeof this.$btns[prevIndex] != 'undefined')
-						this.select(this.$btns[prevIndex]);
+					this.selectNext();
 				}
+
 				ev.preventDefault();
 				break;
 			}
@@ -4468,7 +4540,14 @@ Garnish.Select = Garnish.Base.extend({
 				// Select the last item if none are selected
 				if (this.first === null)
 				{
-					var $item = this.getLastItem();
+					if (Garnish.ltr)
+					{
+						var $item = this.getLastItem();
+					}
+					else
+					{
+						var $item = this.getFirstItem();
+					}
 				}
 				else
 				{
@@ -4492,7 +4571,14 @@ Garnish.Select = Garnish.Base.extend({
 				// Select the first item if none are selected
 				if (this.first === null)
 				{
-					var $item = this.getFirstItem();
+					if (Garnish.ltr)
+					{
+						var $item = this.getFirstItem();
+					}
+					else
+					{
+						var $item = this.getLastItem();
+					}
 				}
 				else
 				{
@@ -4667,11 +4753,13 @@ Garnish.Select = Garnish.Base.extend({
 
 	getItemToTheLeft: function(index)
 	{
-		if (this.isPreviousItem(index))
+		var func = (Garnish.ltr ? 'Previous' : 'Next');
+
+		if (this['is'+func+'Item'](index))
 		{
 			if (this.settings.horizontal)
 			{
-				return this.getPreviousItem(index);
+				return this['get'+func+'Item'](index);
 			}
 			if (!this.settings.vertical)
 			{
@@ -4682,11 +4770,13 @@ Garnish.Select = Garnish.Base.extend({
 
 	getItemToTheRight: function(index)
 	{
-		if (this.isNextItem(index))
+		var func = (Garnish.ltr ? 'Next' : 'Previous');
+
+		if (this['is'+func+'Item'](index))
 		{
 			if (this.settings.horizontal)
 			{
-				return this.getNextItem(index);
+				return this['get'+func+'Item'](index);
 			}
 			else if (!this.settings.vertical)
 			{
@@ -4737,7 +4827,17 @@ Garnish.Select = Garnish.Base.extend({
 			smallestMidpointDiff = null,
 			$closestItem = null;
 
-		for (var i = index + dirProps.step; (typeof this.$items[i] != 'undefined'); i += dirProps.step)
+		// Go the other way if this is the X axis and a RTL page
+		if (Garnish.rtl && axis == Garnish.X_AXIS)
+		{
+			var step = dirProps.step * -1;
+		}
+		else
+		{
+			var step = dirProps.step;
+		}
+
+		for (var i = index + step; (typeof this.$items[i] != 'undefined'); i += step)
 		{
 			var $otherItem = $(this.$items[i]),
 				otherOffset = $otherItem.offset();

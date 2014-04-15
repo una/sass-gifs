@@ -90,7 +90,7 @@ class CategoryElementType extends BaseElementType
 			$key = 'group:'.$group->id;
 
 			$sources[$key] = array(
-				'label'       => $group->name,
+				'label'       => Craft::t($group->name),
 				'data'        => array('handle' => $group->handle),
 				'criteria'    => array('groupId' => $group->id),
 				'structureId' => $group->structureId,

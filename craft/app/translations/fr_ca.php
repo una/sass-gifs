@@ -611,6 +611,7 @@ return array(
 	'Off' => 'Inactif',
 	'On' => 'Actif',
 	'One update available!' => 'Une mise à jour est disponible !',
+	'One “Client” account' => 'Un compte «Client»',
 	'Oops!' => 'Oups!',
 	'Option Label' => 'Étiquette d\'option',
 	'Options' => 'Options',
@@ -737,7 +738,7 @@ return array(
 	'Section' => 'Section',
 	'Section - {section}' => 'Section - {section}',
 	'Section Type' => 'Type de section',
-	'Section and entry locale targetting' => 'Ciblage de la section et de saisie locale',
+	'Section and entry locale targeting' => 'Ciblage de la section et de saisie locale',
 	'Section saved.' => 'Section sauvegardée.',
 	'Sections' => 'Sections',
 	'See how' => 'Voir comment',
@@ -932,6 +933,7 @@ return array(
 	'Unauthorized' => 'Non autorisé',
 	'Uninstall' => 'Désinstaller',
 	'Unknown' => 'Inconnu',
+	'Unlimited' => 'Illimité',
 	'Unlimited Singles and Channels' => 'Allers et canaux illimités',
 	'Unlink' => 'Supprimer le lien',
 	'Unlock' => 'Déverrouiller',
@@ -1048,6 +1050,13 @@ return array(
 	'You’re all up-to-date!' => 'Vous être à jour!',
 	'You’re running Craft {edition} with a Craft {licensedEdition} license.' => 'Vous utilisez Craft {edition} avec une licence Craft {licensedEdition}.',
 	'You’ve got updates!' => 'Vous avez des mises à jour!',
+	'account_activation_body' => 'Hé {{user.friendlyName}},
+
+merci d\'avoir créé un compte chez {{siteName}}! Pour activer votre compte, cliquez sur le lien suivant :
+
+{{link}}
+
+Si vous n\'attendiez pas ce courriel, veuillez l\'ignorer. ',
 	'account_activation_heading' => 'Lorsque quelqu\'un crée un compte :',
 	'account_activation_subject' => 'Activer votre compte',
 	'build {build}' => 'moûture {build}',
@@ -1061,7 +1070,16 @@ return array(
 	'five' => 'cinq',
 	'folders' => 'dossiers',
 	'folders and files' => 'dossiers et fichiers',
+	'forgot_password_body' => 'Hé {{user.friendlyName}},
+
+pour réinitialiser le mot de passe de {{siteName}}, cliquez sur ce lien :
+
+{{link}}
+
+Si vous n\'attendiez pas ce courriel, veuillez l\'ignorer. ',
 	'forgot_password_heading' => 'Lorsque quelqu\'un a oublié son mot de passe :',
+	'forgot_password_subject' => 'Réinitialiser votre mot de passe
+',
 	'four' => 'quatre',
 	'hour' => 'heure',
 	'hours' => 'heures',
@@ -1078,9 +1096,25 @@ return array(
 	'seconds' => 'secondes',
 	'seven' => 'sept',
 	'six' => 'six',
+	'test_email_body' => 'Hé {{user.friendlyName}},
+
+félicitations! Craft est parvenu à envoyer un courriel.
+
+Voici les paramètres que vous avez utilisés :
+
+{% for key, setting in settings %}{{ key }}: {{ setting }}
+{% endfor %}',
 	'test_email_subject' => 'Ceci est un courriel de test de Craft',
 	'three' => 'trois',
 	'two' => 'deux',
+	'verify_new_email_body' => 'Hé {{user.friendlyName}}, 
+
+veuillez vérifier votre nouvelle adresse de courriel en cliquant sur ce lien : 
+
+{{link}} 
+
+Si vous n\'attendiez pas ce courriel, veuillez l\'ignorer.
+',
 	'verify_new_email_heading' => 'Lorsque quelqu\'un modifie son adresse de courriel :',
 	'verify_new_email_subject' => 'Vérifiez votre nouvelle adresse de courriel',
 	'week' => 'semaine',

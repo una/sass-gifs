@@ -118,6 +118,10 @@ class DateTime extends \DateTime
 
 			if (!empty($dt['time']))
 			{
+				// Replace the localized "AM" and "PM"
+				$localeData = craft()->i18n->getLocaleData();
+				$dt['time'] = str_replace(array($localeData->getAMName(), $localeData->getPMName()), array('AM', 'PM'), $dt['time']);
+
 				$date .= ' '.$dt['time'];
 				$format .= ' '.$dateFormatter->getTimepickerPhpFormat();
 			}

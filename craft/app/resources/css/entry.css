@@ -20,7 +20,6 @@ body.ltr #locales li.sel:before { float: left; }
 body.rtl #locales li.sel:before { float: right; }
 body.ltr #locales li.sel:before { margin: 3px 0 0 -16px; }
 body.rtl #locales li.sel:before { margin: 3px -16px 0 0; }
-body.rtl #locales li.sel:before { -webkit-transform: scaleX(-1); -moz-transform: scaleX(-1); -o-transform: scaleX(-1); transform: scaleX(-1); -ms-filter: fliph; filter: fliph; }
 
 #locales li a { color: #29323d; }
 

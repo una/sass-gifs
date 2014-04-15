@@ -285,7 +285,7 @@ class UsersController extends BaseController
 
 		if (!$userToValidate)
 		{
-			if (($url = craft()->config->getActivateAccountFailurePath()) != '')
+			if (($url = craft()->config->getLocalized('activateAccountFailurePath')) != '')
 			{
 				$this->redirect(UrlHelper::getSiteUrl($url));
 			}
@@ -347,7 +347,7 @@ class UsersController extends BaseController
 		}
 		else
 		{
-			$url = craft()->config->getActivateAccountFailurePath();
+			$url = craft()->config->getLocalized('activateAccountFailurePath');
 
 			if ($url === '')
 			{

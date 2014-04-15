@@ -611,6 +611,7 @@ return array(
 	'Off' => 'Off',
 	'On' => 'On',
 	'One update available!' => 'È disponibile un aggiornamento!',
+	'One “Client” account' => 'Un conto “Client”',
 	'Oops!' => 'Ops!',
 	'Option Label' => 'Opzioni etichetta',
 	'Options' => 'Opzioni',
@@ -737,7 +738,7 @@ return array(
 	'Section' => 'Sezione',
 	'Section - {section}' => 'Sezione - {section}',
 	'Section Type' => 'Tipo di sezione',
-	'Section and entry locale targetting' => 'Sezione e voce del targeting locale',
+	'Section and entry locale targeting' => 'Sezione e voce del targeting locale',
 	'Section saved.' => 'Sezione salvata.',
 	'Sections' => 'Sezioni',
 	'See how' => 'Vedi come',
@@ -932,6 +933,7 @@ return array(
 	'Unauthorized' => 'Non autorizzato',
 	'Uninstall' => 'Disinstalla',
 	'Unknown' => 'Sconosciuto',
+	'Unlimited' => 'Illimitato',
 	'Unlimited Singles and Channels' => 'Singoli e canali illimitati',
 	'Unlink' => 'Rimuovi il collegamento',
 	'Unlock' => 'Sblocca',
@@ -1048,6 +1050,13 @@ return array(
 	'You’re all up-to-date!' => 'Sei aggiornato!',
 	'You’re running Craft {edition} with a Craft {licensedEdition} license.' => 'Stai eseguendo Craft {edition} con una licenza Craft {licensedEdition}.',
 	'You’ve got updates!' => 'Hai aggiornamenti!',
+	'account_activation_body' => 'Ciao {{user.friendlyName}},
+
+ Grazie per aver creato un account con {{siteName}}! Per attivare il tuo account, clicca sul seguente link:
+
+ {{link}}
+
+ Se non aspettavi questa email, ignorala semplicemente. ',
 	'account_activation_heading' => 'Quando qualcuno crea un account:',
 	'account_activation_subject' => 'Attiva il tuo account',
 	'build {build}' => 'versione {build}',
@@ -1061,6 +1070,13 @@ return array(
 	'five' => 'cinque',
 	'folders' => 'cartelle',
 	'folders and files' => 'cartelle e file',
+	'forgot_password_body' => 'Ciao {{user.friendlyName}},
+
+ Per reimpostare la tua {{siteName}} password, clicca su questo link:
+
+ {{link}}
+
+Se non aspettavi questa email, ignorala semplicemente. ',
 	'forgot_password_heading' => 'Quando qualcuno dimentica la propria password:',
 	'forgot_password_subject' => 'Reimposta la tua password',
 	'four' => 'quattro',
@@ -1079,9 +1095,24 @@ return array(
 	'seconds' => 'secondi',
 	'seven' => 'sette',
 	'six' => 'sei',
+	'test_email_body' => 'Ciao {{user.friendlyName}},
+
+ Congratulazioni! Craft ti ha inviato una email con successo.
+
+ Ecco le impostazioni da te usate:
+
+ {% for key, setting in settings %}{{ key }}: {{ setting }}
+ {% endfor %} ',
 	'test_email_subject' => 'Questa è una email di prova da Craft',
 	'three' => 'tre',
 	'two' => 'due',
+	'verify_new_email_body' => 'Ciao {{user.friendlyName}},
+
+Ti preghiamo di verificare il tuo nuovo indirizzo email cliccando su questo link:
+
+ {{link}}
+
+ Se non aspettavi questa email, ignorala semplicemente. ',
 	'verify_new_email_heading' => 'Quando qualcuno cambia il proprio indirizzo email:',
 	'verify_new_email_subject' => 'Verifica il tuo nuovo indirizzo email',
 	'week' => 'settimana',

@@ -57,7 +57,7 @@ var CP = Garnish.Base.extend(
 		this.$main = $('#main');
 		this.$content = $('#content');
 		this.$collapsibleTables = this.$content.find('table.collapsible');
-		this.$upgradePromo = $('#upgradepromo');
+		this.$upgradePromo = $('#upgradepromo > a');
 
 		// Find all the nav items
 		this.navItems = [];
@@ -1060,7 +1060,7 @@ TaskProgressHUD.Task = Garnish.Base.extend(
 		if (this.level != 0)
 		{
 			this.$container.css('padding-'+Craft.left, 24+(this.level*24));
-			$('<div class="indent" data-icon="→"/>').appendTo(this.$descriptionContainer);;
+			$('<div class="indent" data-icon="'+(Craft.orientation == 'ltr' ? 'rarr' : 'larr')+'"/>').appendTo(this.$descriptionContainer);;
 		}
 
 		this.updateStatus(info);

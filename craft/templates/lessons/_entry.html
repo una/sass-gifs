@@ -10,6 +10,11 @@
 			<figcaption class="explanation">{{ entry.explanation }}</figcaption>
 		</figure>
 
+		<section class="more-links">
+		<h3>More Resources:</h3>
+			{{ entry.links }}
+		</section>
+
 		<section class="tags">
 		{% set tags = entry.tags %}
 		{% if tags | length %}

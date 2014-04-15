@@ -49,6 +49,4 @@ return array (
 		"{% for key, setting in settings %}".
 		"{{ key }}:  {{ setting }}\n".
 		"{% endfor %}",
-
-	'PublishPro' => 'Publish Pro',
 );

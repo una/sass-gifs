@@ -3534,7 +3534,7 @@ Craft.AssetIndex = Craft.BaseElementIndex.extend(
 	{
 		if (!this.$uploadButton)
 		{
-			this.$uploadButton = $('<div class="btn submit assets-upload-button" data-icon="↑" style="position: relative; overflow: hidden; direction: ltr; " role="button">' + Craft.t('Upload files') + '</div>');
+			this.$uploadButton = $('<div class="btn submit assets-upload-button" data-icon="↑" style="position: relative; overflow: hidden;" role="button">' + Craft.t('Upload files') + '</div>');
 			this.addButton(this.$uploadButton);
 
 			this.$uploadInput = $('<input type="file" multiple="multiple" name="assets-upload" />').hide().insertBefore(this.$uploadButton);
@@ -4310,7 +4310,9 @@ Craft.AssetIndex = Craft.BaseElementIndex.extend(
 
 	_positionProgressBar: function()
 	{
-		var $container = $();
+		var $container = $(),
+			offset = 0;
+
 		if (this.settings.context == 'index')
 		{
 			$container = this.progressBar.$progressBar.parents('#content');
@@ -4325,8 +4327,16 @@ Craft.AssetIndex = Craft.BaseElementIndex.extend(
 		var diff = scrollTop - containerTop;
 		var windowHeight = Garnish.$win.height();
 
+		if ($container.height() > windowHeight)
+		{
+			offset = (windowHeight / 2) - 6 + diff;
+		}
+		else
+		{
+			offset = ($container.height() / 2) - 6;
+		}
 		this.progressBar.$progressBar.css({
-			top: (windowHeight / 2) - 6 + diff
+			top: offset
 		});
 
 	}
@@ -7551,17 +7561,39 @@ Craft.LightSwitch = Garnish.Base.extend(
 		switch (event.keyCode)
 		{
 			case Garnish.SPACE_KEY:
+			{
 				this.toggle();
 				event.preventDefault();
 				break;
+			}
 			case Garnish.RIGHT_KEY:
-				this.turnOn();
+			{
+				if (Craft.orientation == 'ltr')
+				{
+					this.turnOn();
+				}
+				else
+				{
+					this.turnOff();
+				}
+
 				event.preventDefault();
 				break;
+			}
 			case Garnish.LEFT_KEY:
-				this.turnOff();
+			{
+				if (Craft.orientation == 'ltr')
+				{
+					this.turnOff();
+				}
+				else
+				{
+					this.turnOn();
+				}
+
 				event.preventDefault();
 				break;
+			}
 		}
 	},
 
@@ -9298,6 +9330,7 @@ Craft.UpgradeModal = Garnish.Modal.extend(
 	$ccMonthInput: null,
 	$ccYearInput: null,
 	$ccCvcInput: null,
+	submittingPurchase: false,
 
 	editions: null,
 	edition: null,
@@ -9457,6 +9490,12 @@ Craft.UpgradeModal = Garnish.Modal.extend(
 	submitPurchase: function(ev)
 	{
 		ev.preventDefault();
+
+		if (this.submittingPurchase)
+		{
+			return;
+		}
+
 		this.cleanupCheckoutForm();
 
 		var pkg = ev.data.pkg;
@@ -9500,6 +9539,8 @@ Craft.UpgradeModal = Garnish.Modal.extend(
 
 		if (validates)
 		{
+			this.submittingPurchase = true;
+
 			// Get a CC token from Stripe.js
 			this.$checkoutSubmitBtn.addClass('active');
 			this.$checkoutSpinner.removeClass('hidden');
@@ -9521,18 +9562,20 @@ Craft.UpgradeModal = Garnish.Modal.extend(
 				else
 				{
 					this.onPurchaseResponse();
-					Garnish.shake(this.$checkoutForm);
+					this.showError(response.error.message);
+					Garnish.shake(this.$checkoutForm, 'left');
 				}
 			}, this));
 		}
 		else
 		{
-			Garnish.shake(this.$checkoutForm);
+			Garnish.shake(this.$checkoutForm, 'left');
 		}
 	},
 
 	onPurchaseResponse: function()
 	{
+		this.submittingPurchase = false;
 		this.$checkoutSubmitBtn.removeClass('active');
 		this.$checkoutSpinner.addClass('hidden');
 	},
@@ -9570,12 +9613,21 @@ Craft.UpgradeModal = Garnish.Modal.extend(
 						errorText += response.errors[i];
 					}
 
-					this.$checkoutFormError = $('<p class="error centeralign">'+errorText+'</p>').insertBefore(this.$checkoutSecure);
+					this.showError(errorText);
+				}
+				else
+				{
+					var errorText = Craft.t('An unknown error occurred.');
 				}
 
-				Garnish.shake(this.$checkoutForm);
+				Garnish.shake(this.$checkoutForm, 'left');
 			}
 		}
+	},
+
+	showError: function(error)
+	{
+		this.$checkoutFormError = $('<p class="error centeralign">'+error+'</p>').insertBefore(this.$checkoutSecure);
 	},
 
 	onUpgrade: function()
