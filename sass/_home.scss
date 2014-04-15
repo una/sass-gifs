@@ -28,9 +28,9 @@
 }
 
 .logo {
-	width: 120px; 
-	height: 150px;
-	background: image-url('sassgif-logo.svg');
+	width: 80px; 
+	height: 40px;
+	background: image-url('sassgif-logo.png');
 	background-repeat: no-repeat;
 	@include background-size(100%);
 	font-size: 0px;
@@ -39,10 +39,8 @@
 
 .searchbar {
 	@extend %fl-r;
-	
-	position: absolute;
-	top: 1em;
-	right: 2em; 
+	position: relative;
+	z-index: 3;
 	
 	/* SEARCHBAR */
 	input {
@@ -57,6 +55,7 @@
 	}
 
 	input[type="search"] {
+		font-size: 0.6em;
 		outline: none;
 		-webkit-appearance: textfield;
 		-webkit-box-sizing: content-box;
