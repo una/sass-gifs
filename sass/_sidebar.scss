@@ -1,11 +1,17 @@
 .sidebar {
 	height: 100vh;
-	width: 150px;
+	width: $sidebar-width;
 	background-color: $color-background-subtle;
 	border-right: 1px solid $color-background-shade;
 	float: left;
 	position: absolute;
 	z-index: 6;
+	margin-left: -$sidebar-width;
+	@include transition-duration(0.5s);
+	
+	&.opened {
+		margin-left: 0;
+	}
 	
 	li {
 		font-size: 0.6em; 
@@ -15,19 +21,25 @@
 			text-decoration: none;
 			font-weight: 200;
 			color: $color-text-strong;
+			display: block;
 		}
+
+		// &:nth-child(2n+1) {
+		// 	background-color: $color-background-shade;
+		// }
 		
 		&:hover {
 			color: $color-text-strong;
-			background-color: $color-background-subtle; 
+			background-color: $color-background-shade; 
 		}  
 	}
 }
 
-.shader.on {
+.shader.opened {
 	background-color: rgba(0,0,0,0.5);
 	width: 100%;
 	height: 100%;
 	position: absolute;
 	z-index: 5;
+	@include transition-duration(0.5s);
 }

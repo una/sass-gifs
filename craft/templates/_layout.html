@@ -6,6 +6,8 @@
 	<link rel="home" href="{{ siteUrl }}" />
 	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro:500|Radley:400,400italic' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Elsie+Swash+Caps:900' rel='stylesheet' type='text/css'>
+	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="/js/scripts.js"></script>
 	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 	<link rel="stylesheet" href="/stylesheets/main.css">
 
@@ -14,34 +16,19 @@
 
 <body>
 	<header id="header">
-		<div class="container">
-			<a href="#" class="ham-menu fa fa-bars"></a>
-			<h1><a class="logo" href="{{ siteUrl }}">{{ siteName }}</a></h1>
-<!-- 			<nav>
-				<a class="topics" href="#">Topics</a>
-				<a class="about" href="#">About</a>
-				<ul>
-					{% for entry in craft.entries.section('Lessons').find() %}
-						<li>
-							<a href="{{ entry.slug }}" {% if craft.request.firstSegment == 'entry.slug' %}class="active"{% endif %}>
-								{{ entry.title }}
-							</a>
-						</li>
-					{% endfor %}
-				</ul>
-			</nav> -->
-
-		
+		<a href="#" class="ham-menu fa fa-bars"></a>
+		<h1><a class="logo" href="{{ siteUrl }}">{{ siteName }}</a></h1>
+	
 		<section class="searchbar">
 			<form action="{{ url('results') }}" role="search">
 				    <input type="search" name="q" placeholder="Search">
 				    <input type="submit" value="Go">
 			</form>
 		</section>
-	</div>
 	</header>
 
 	<nav class="sidebar" role="navigation">
+		<h1>Topics</h1>
 		<ul>
 			{% for entry in craft.entries.section('Lessons').find() %}
 				<li>
