@@ -5,6 +5,15 @@
 		width: 30%;
 		float: left;
 		display: block;
+		
+		&:nth-child(2) {
+			width: 35%;
+			margin: 0 2.5%;
+			border-left: 1px solid lightgrey;
+			border-right: 1px solid lightgrey;
+			padding: 0 2.5%;
+		} 
+
 		img {
 			width: 100%;
 		}
