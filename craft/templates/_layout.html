@@ -15,8 +15,9 @@
 <body>
 	<header id="header">
 		<div class="container">
+			<a href="#" class="ham-menu fa fa-bars"></a>
 			<h1><a class="logo" href="{{ siteUrl }}">{{ siteName }}</a></h1>
-			<nav>
+<!-- 			<nav>
 				<a class="topics" href="#">Topics</a>
 				<a class="about" href="#">About</a>
 				<ul>
@@ -28,7 +29,7 @@
 						</li>
 					{% endfor %}
 				</ul>
-			</nav>
+			</nav> -->
 
 		
 		<section class="searchbar">
@@ -37,9 +38,21 @@
 				    <input type="submit" value="Go">
 			</form>
 		</section>
-
 	</div>
-</header>
+	</header>
+
+	<nav class="sidebar" role="navigation">
+		<ul>
+			{% for entry in craft.entries.section('Lessons').find() %}
+				<li>
+					<a href="{{ entry.slug }}" {% if craft.request.firstSegment == 'entry.slug' %}class="active"{% endif %}>
+						{{ entry.title }}
+					</a>
+				</li>
+			{% endfor %}
+		</ul>
+	</nav>
+	<div class="shader"></div>
 
 	<main id="content" role="main" class="main container">
 		{% block content %}
@@ -53,5 +66,6 @@
 			This was made by <a href="http://unakravets.com" target="_blank">Una</a> | View <a href="http://github.com/una/sass-gifs">Github Repo</a> | Built with &hearts; in <a href="http://buildwithcraft.com">Craft</a>
 		</div>
 	</footer>
+
 </body>
 </html>

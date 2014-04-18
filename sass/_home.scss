@@ -1,6 +1,5 @@
 .lesson-list--home,
 .lesson-list--results {
-	@extend %row;
 	li {
 		width: 30%;
 		float: left;
@@ -44,49 +43,4 @@
 	@include background-size(100%);
 	font-size: 0px;
 	display: block;
-}
-
-.searchbar {
-	@extend %fl-r;
-	position: relative;
-	z-index: 3;
-	
-	/* SEARCHBAR */
-	input {
-		font-family: $font-family-copy;
-		font-size: 1em;
-		margin-left: -2.5em;
-	}
-
-	input[type="submit"] {
-		opacity: 0;
-		@include transition-duration(0.3s);
-	}
-
-	input[type="search"] {
-		font-size: 0.6em;
-		outline: none;
-		-webkit-appearance: textfield;
-		-webkit-box-sizing: content-box;
-		background: $color-background-shade url(http://i.imm.io/Q0Jo.png) no-repeat 9px center;
-		border: none;
-		padding: 0.3em 3em 0.3em 2.5em;
-		width: 8em;
-
-		-webkit-border-radius: 2em;
-		-moz-border-radius: 2em;
-		border-radius: 2em;
-
-		-webkit-transition: all .5s;
-		-moz-transition: all .5s;
-		transition: all .5s;
-
-		&:focus {
-			width: 14em;
-			
-			+input {
-				opacity: 1;
-			}
-		}
-	}
 }
