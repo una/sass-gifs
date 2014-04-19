@@ -29,19 +29,21 @@
 	</article>
 	
 	<section class="pagination">
-	{% set params = {
-                section: 'lessons',
-            } %}  
+	{% set params = { section: 'lessons' } %}  
 
     {% set prevconcept = entry.getPrev(params) %}
     {% set nextconcept = entry.getNext(params) %}
 
         {% if prevconcept %}   
-        <a style="position:absolute; z-index:4; left:0 top: 200px; display: block;" class="prev" href="{{ prevconcept.url }}">Previous Concept</a>
+        <a class="fa fa-chevron-right next" href="{{ prevconcept.url }}"></a>
+	        {% else %}
+	        <a class="prev fa fa-chevron-left" href="{{ craft.entries.last.url }}"></a>
         {% endif %}
 
         {% if nextconcept %}
-        <a style="position:absolute; z-index:4; right:0 top: 200px; display: block;" class="next" href="{{ nextconcept.url }}">Next Concept</a>
+        <a class="fa fa-chevron-right next" href="{{ nextconcept.url }}"></a>
+	      	{% else %}
+	      	<a class="prev fa fa-chevron-left" href="{{ craft.entries.first.url }}"></a>
         {% endif %}﻿
       </section>
 {% endblock %}
