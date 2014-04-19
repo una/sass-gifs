@@ -4635,7 +4635,7 @@ Craft.AssetSelectorModal = Craft.BaseElementSelectorModal.extend(
 		for (var i = 0; i < $selectedItems.length; i++)
 		{
 			var $item = $($selectedItems[i]),
-				elementId = $item.data('id');
+				elementId = Craft.getElementInfo($item).id;
 
 			if (typeof Craft.AssetSelectorModal.transformUrls[transform][elementId] == 'undefined')
 			{
@@ -4666,7 +4666,8 @@ Craft.AssetSelectorModal = Craft.BaseElementSelectorModal.extend(
 
 		var data = {
 			fileId: elementId,
-			handle: transform
+			handle: transform,
+			returnUrl: true
 		};
 
 		Craft.postActionRequest('assets/generateTransform', data, $.proxy(function(response, textStatus)
@@ -4675,11 +4676,9 @@ Craft.AssetSelectorModal = Craft.BaseElementSelectorModal.extend(
 
 			if (textStatus == 'success')
 			{
-				var parts = response.split(':');
-
-				if (parts[0] == 'success')
+				if (response.url)
 				{
-					Craft.AssetSelectorModal.transformUrls[transform][elementId] = response.replace(/^success:/, '');
+					Craft.AssetSelectorModal.transformUrls[transform][elementId] = response.url;
 				}
 			}
 

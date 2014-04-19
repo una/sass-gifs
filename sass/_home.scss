@@ -23,24 +23,6 @@
 			font-size: 1.2em;
 			font-weight: 900;
 			color: $color-text-weak;
-			
-			&:hover {
-				color: $color-text-strong;
-			}  
 		}
 	}
-}
-
-.sassmeister-gist {
-	margin: 2em auto;
-}
-
-.logo {
-	width: 80px; 
-	height: 40px;
-	background: image-url('sassgif-logo.png');
-	background-repeat: no-repeat;
-	@include background-size(100%);
-	font-size: 0px;
-	display: block;
 }

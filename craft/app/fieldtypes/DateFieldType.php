@@ -129,7 +129,7 @@ class DateFieldType extends BaseFieldType
 	}
 
 	/**
-	 * Convert back to the server's timezone.
+	 * Preps the field value for use.
 	 *
 	 * @param mixed $value
 	 * @return DateTime
@@ -138,7 +138,11 @@ class DateFieldType extends BaseFieldType
 	{
 		if ($value)
 		{
-			return $value->setTimezone(new \DateTimeZone(craft()->getTimeZone()));
+			// Set it to the system timezone
+			$timezone = craft()->getTimeZone();
+			$value->setTimezone(new \DateTimeZone($timezone));
+
+			return $value;
 		}
 	}
 

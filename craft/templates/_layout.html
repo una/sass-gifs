@@ -17,7 +17,7 @@
 <body>
 	<header id="header">
 		<a href="#" class="ham-menu fa fa-bars"></a>
-		<h1><a class="logo" href="{{ siteUrl }}">{{ siteName }}</a></h1>
+		<h1><a class="logo {% if entry.getSection() == 'Lessons' %}lesson-page{% endif %}" href="{{ siteUrl }}">{{ siteName }}</a></h1>
 	
 		<section class="searchbar">
 			<form action="{{ url('results') }}" role="search">

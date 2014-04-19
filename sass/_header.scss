@@ -58,72 +58,25 @@ header {
 .ham-menu {
 	color: white;
 	text-decoration: none;
-	margin: 0.5em;
+	padding: 0.5em;
 	float: left;
+	display: inline-block;
+	
+	&:hover {
+		background: $bouquet;
+	}
 }
 
-// .topics, 
-// .about {
-// 	position: relative;
-// 	font-size: 0.8em;
-// 	background-color: $color-primary;
-// 	display: block;
-// 	text-decoration: none;
-// 	z-index: 2;
-// 	@extend %pulldown;
-// 	padding: 0.63em 0.5em;
-// 	float: left;
-// 	color: $color-text-strong;
+.logo {
+	width: 80px; 
+	height: 40px;
+	background: image-url('sassgif-logo.png');
+	background-repeat: no-repeat;
+	@include background-size(100%);
+	font-size: 0px;
+	display: block;
 	
-// 	&:hover {
-// 		color: $color-background-shade;
-// 	}
-	
-// }
-	
-// .topics:hover {
-// 	~ ul {
-// 		margin-top: 2em;
-// 	}
-// }
-
-// nav {
-// 	margin-top: -50px;
-	
-// 	.about {
-// 		margin-left: 0; 
-// 	}
-
-// 	ul {
-// 		@extend %pulldown;
-// 		background-color: $color-background-shade; 
-// 		position: absolute;
-// 		@include transition-duration;
-// 		margin-top: -300px;
-		
-// 		&:hover {
-// 			margin-top: 2em;
-// 		}
-		
-// 		li {
-// 			font-size: 0.6em; 
-// 			padding: 0.5em 1em;
-			
-// 			a {
-// 				text-decoration: none;
-// 				font-weight: 200;
-// 				color: $color-text-strong;
-// 			}
-			
-// 			&:hover {
-// 				color: $color-text-strong;
-// 				background-color: $color-background-subtle; 
-// 			}  
-// 		}
-// 	}
-// }
-
-// %pulldown {
-// 	width: 150px;
-// 	margin-left: 130px;
-// }
+	&.lesson-page {
+		margin-left: 100px;
+	}
+}
