@@ -26,24 +26,25 @@ window.SGIF || (SGIF = {});
     $('.sidebar, .shader').toggleClass('opened');
   },
   
-//  Gifs play on click or hover. Replace with static image if they don't
-
+  // Gifs play on click or hover. Replace with static image if they don't
+  // turn all of the gifs on the homepage into their off state originally until hover
   homepageGifs: function() {
     console.log('homepage gifs');
     for (var i = 0; i <= $('.lesson-list--home img').length; i++) {
-         
-          $('.lesson-list--home img')[i].src = $('.lesson-list--home img')[i].src.substring(0, $('.lesson-list--home img')[i].src.length - 3) +"png";
-        console.log($('.lesson-list--home img')[i].src);
-        }
+     //alex did this for me
+      $('.lesson-list--home img')[i].src = $('.lesson-list--home img')[i].src.substring(0, $('.lesson-list--home img')[i].src.length - 3) +"png";
+    console.log($('.lesson-list--home img')[i].src);
+    }
   },
 
+  //gif play state
   gifPlay: function() {
     var src = $(this)[0].src.substring(0, $(this)[0].src.length - 3) +"gif";
     console.log($(this), $(this)[0].src , src);
     $(this)[0].src = src;
-
     },
 
+    //gif stop state
     gifStop: function() {
       var src = $(this)[0].src.substring(0, $(this)[0].src.length - 3) +"png";
       console.log($(this), $(this)[0].src , src);

@@ -9,6 +9,10 @@
 	margin-left: -$sidebar-width;
 	@include transition-duration(0.5s);
 	
+	h1 {
+		margin: 0.5em 0.5em 0.2em;
+	}
+	
 	&.opened {
 		margin-left: 0;
 	}
