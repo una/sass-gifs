@@ -16,26 +16,41 @@ window.SGIF || (SGIF = {});
   bindEvents: function() {
     $(document).ready(function(){ console.log('doc loaded');});
     $('.ham-menu').on('click', this.menuOpen);
+    $('.lesson-list--home li img').on('mouseover', this.gifPlay);
+    $('.lesson-list--home li img').on('mouseout', this.gifStop);
+    this.homepageGifs();
   },
 
   // Menu Opening
   menuOpen: function() {
-    console.log('clicked');
     $('.sidebar, .shader').toggleClass('opened');
   },
   
 //  Gifs play on click or hover. Replace with static image if they don't
-  gifPlay: $(function() {
-    $('img').each(function(e){
-     var src = $(e).attr('src');
-        $(e).hover(function(){
-        $(this).attr('src', src.replace('.gif', '_anim.gif'));
-          }, function(){
-            $(this).attr('src', src);
-        });
-      });
-    }),
 
-   };
+  homepageGifs: function() {
+    console.log('homepage gifs');
+    for (var i = 0; i <= $('.lesson-list--home img').length; i++) {
+         
+          $('.lesson-list--home img')[i].src = $('.lesson-list--home img')[i].src.substring(0, $('.lesson-list--home img')[i].src.length - 3) +"png";
+        console.log($('.lesson-list--home img')[i].src);
+        }
+  },
+
+  gifPlay: function() {
+    var src = $(this)[0].src.substring(0, $(this)[0].src.length - 3) +"gif";
+    console.log($(this), $(this)[0].src , src);
+    $(this)[0].src = src;
+
+    },
+
+    gifStop: function() {
+      var src = $(this)[0].src.substring(0, $(this)[0].src.length - 3) +"png";
+      console.log($(this), $(this)[0].src , src);
+      $(this)[0].src = src;
+    }
+
+  };
+
   $(document).ready(function(){SGIF.common.init();}); // don't for
 })(jQuery, window, document);
