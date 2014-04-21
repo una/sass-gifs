@@ -6,9 +6,13 @@ footer {
    width: 100%;
    background: $color-background-shade;
    text-align: center;
-   font-size: 0.8em;
    padding: 1em; 
    z-index: 3;
-   margin-top: -$footer-height;
    height: $footer-height;
+   font-size: 0.6em;
+   
+   a {
+      text-decoration: none;
+      color: $color-primary; 
+   }
 }
