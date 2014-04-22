@@ -29,8 +29,6 @@
 }
 
 article {
-	
-	
 	h1 {
 		font-size: 1.3em;
 		font-weight: 800;
@@ -42,17 +40,18 @@ article {
 
 .tags {
 	@extend %row;
-	font-size: 0.6em;
 	margin-bottom: 1em;
 	.tag-list {
 		li {
 			float: left;
 			display: inline-block;
 			// @extend %border-radius;
-			background-color: $color-background-subtle;
-			border: 1px solid $color-background-shade;
-			padding: 0.2em 0.4em;
 			margin-right: 0.4em;
+			@extend %caption-type;
+			a {
+				text-decoration: none;
+				color: $color-titles;
+			}
 		}
 	} 
 }

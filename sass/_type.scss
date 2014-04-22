@@ -74,3 +74,11 @@ strong {
 h3 {
 	margin: 1em 0;
 }
+
+%caption-type {
+	font-size: 0.6em;
+	color: $color-titles;
+	background-color: $color-background-subtle;
+	border: 1px solid $color-background-shade;
+	padding: 0.2em 0.4em;
+}

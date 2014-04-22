@@ -1,16 +1,14 @@
 .lesson-list--home,
 .lesson-list--results {
 	li {
-		width: 30%;
+		width: 32%;
 		float: left;
 		display: block;
+		background: $color-background-subtle; 
+		padding: 1%;
 		
 		&:nth-child(2) {
-			width: 35%;
-			margin: 0 2.5%;
-			border-left: 1px solid lightgrey;
-			border-right: 1px solid lightgrey;
-			padding: 0 2.5%;
+			margin: 0 2%;
 		} 
 
 		img {
@@ -20,9 +18,17 @@
 		a {
 			text-align: center;
 			text-decoration: none;
-			font-size: 1.2em;
-			font-weight: 900;
 			color: $color-text-weak;
+		}
+
+		.entry-date {
+			@extend %caption-type;
+			color: darken($color-background-shade, 20);
+			margin-top: -0.5em;
+			display: block;
+			font-style: italic;
+			border: none;
+			background: none;
 		}
 	}
 }
