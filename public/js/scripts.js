@@ -58,11 +58,15 @@ window.SGIF || (SGIF = {});
 
       switch(e.keyCode) {
         case 37: // left arr
+        if ($('.pagination').length) {
           location.href = $('.pagination a.prev').attr('href');
+        }
         break;
 
         case 39: // right arr
+        if ($('.pagination').length) {
           location.href = $('.pagination a.next').attr('href');
+        }
         break;
 
       default: return;
@@ -70,5 +74,5 @@ window.SGIF || (SGIF = {});
     }
   };
 
-  $(document).ready(function(){SGIF.common.init();}); // initializing this object
+  $(document).ready(function(){SGIF.common.init();}); // don't for
 })(jQuery, window, document);
