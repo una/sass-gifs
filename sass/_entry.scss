@@ -4,7 +4,7 @@
 	img {
 		width: 50%;
 		padding: 5%;
-		@extend %fl-l;
+		@extend %fl-r;
 	}
 
 	figcaption {
@@ -32,9 +32,11 @@ article {
 	
 	
 	h1 {
-	font-size: 2.5em;
-	font-weight: 800;
-	margin: 1em;
+		font-size: 1.3em;
+		font-weight: 800;
+		margin: 1em 0;
+		color: $color-titles;
+		text-transform: uppercase;
 	}
 }
 

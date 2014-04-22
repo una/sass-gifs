@@ -15,6 +15,7 @@ window.SGIF || (SGIF = {});
 
   bindEvents: function() {
     $(document).ready(function(){ console.log('doc loaded');});
+    $(document).on('keydown', this.keyDown);
     $('.ham-menu').on('click', this.menuOpen);
     $('.lesson-list--home li img').on('mouseover', this.gifPlay);
     $('.lesson-list--home li img').on('mouseout', this.gifStop);
@@ -49,9 +50,25 @@ window.SGIF || (SGIF = {});
       var src = $(this)[0].src.substring(0, $(this)[0].src.length - 3) +"png";
       console.log($(this), $(this)[0].src , src);
       $(this)[0].src = src;
-    }
+    },
 
+    //keyboard events
+    keyDown: function (e) {
+      console.log('keydown running');
+
+      switch(e.keyCode) {
+        case 37: // left arr
+          location.href = $('.pagination a.prev').attr('href');
+        break;
+
+        case 39: // right arr
+          location.href = $('.pagination a.next').attr('href');
+        break;
+
+      default: return;
+      }
+    }
   };
 
-  $(document).ready(function(){SGIF.common.init();}); // don't for
+  $(document).ready(function(){SGIF.common.init();}); // initializing this object
 })(jQuery, window, document);

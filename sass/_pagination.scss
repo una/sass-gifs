@@ -1,17 +1,31 @@
 .pagination {
-	position: absolute;
-	top: 0;
-	left: 50px;
+	// position: absolute;
+	// top: 0;
+	// left: 50px;
 	
 	a {
 		padding: 0.5em;
 		text-decoration: none;
-		color: white;
-		display: inline-block;
-		float: left;
+		color: $color-titles;
+		background: $color-background-subtle;
+		display: block;
+		width: 2em;
+		height: 2em;
+		top: 50%;
+		position: absolute;
+		
+		&.prev {
+			left: 0;
+
+		}
+
+		&.next {
+			right: 0;
+			
+		}
 		
 		&:hover {
-			background: $bouquet;
+			background: $color-background-shade;
 		}
 	}
 }
