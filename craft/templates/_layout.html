@@ -17,6 +17,7 @@
 		<h1><a class="logo {% if entry.getSection() == 'Lessons' %}lesson-page{% endif %}" href="{{ siteUrl }}">{{ siteName }}</a></h1>
 	
 		<section class="searchbar">
+			<label class="fa fa-search" for="searchbar"></label>
 			<form action="{{ url('results') }}" role="search">
 				<input type="search" name="q" placeholder="Search">
 				<input type="submit" value="Go">
