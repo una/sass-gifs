@@ -10,6 +10,10 @@
 		
 		&:nth-child(2) {
 			margin: 0 2%;
+			
+			@include breakpoint($tab-horiz) {
+				margin: 1%;
+			}
 		} 
 
 		img {
@@ -30,6 +34,16 @@
 			font-style: italic;
 			border: none;
 			background: none;
+		}
+
+		@include breakpoint($tab-horiz) {
+			width: 48%;
+			margin: 1%;
+		}
+
+		@include breakpoint($phone-horiz) {
+			width: 98%;
+			margin: 0 1% 5%; 
 		}
 	}
 }

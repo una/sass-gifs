@@ -46,6 +46,17 @@ $border-radius: 3px;
 $footer-height: 3em;
 $sidebar-width: 140px;
 
+// BREAKPOINTS
+
+$phone-vert: max-width 20em; // 20em (320px)
+$phone-horiz: max-width 30em; // 30em (480px)
+$small-tab: max-width 37.5em; // 37.5em (600px)
+$tab-vert: max-width 48em; // 48em (768px)
+$tab-horiz: max-width 56.25em; // 56.25em (900px)
+$layout-break: max-width 60em; // 60em (960px)
+$page-container: max-width 68.75em;// 68.75em (1100px)
+$huge: min-width 81.25em;// 81.25em (1300px)
+
 /* 
 	TYPOGRAPHY
 */
