@@ -5,17 +5,47 @@
 		width: 50%;
 		padding: 5%;
 		@extend %fl-r;
+		
+		@include breakpoint($small-tab) {
+			float: none;
+			width: 100%;
+		}
 	}
 
 	figcaption {
 		width: 50%;
 		@extend %fl-l;
 		
+		@include breakpoint($small-tab) {
+			float: none;
+			width: 100%;
+		}
+		
 		p {
 			font-size: 1.25em;
 			line-height: 1.5;
 			background-color: $color-background-subtle;
 			padding: 1em;
+			
+			@include breakpoint($page-container) {
+				font-size: 1.1em;
+			}
+
+			@include breakpoint($tab-horiz) {
+				font-size: 1em;
+			}
+
+			@include breakpoint($tab-vert) {
+				font-size: 0.9em;
+			}
+
+			@include breakpoint($small-tab) {
+				font-size: 1em;
+			}
+
+			@include breakpoint($phone-horiz) {
+				font-size: 0.8em;
+			}
 		}
 		
 		a {
@@ -35,6 +65,10 @@ article {
 		margin: 1em 0;
 		color: $color-titles;
 		text-transform: uppercase;
+		
+		@include breakpoint($page-container) {
+			margin: 1.5em 0 1em;
+		}
 	}
 }
 
@@ -63,7 +97,7 @@ article {
 			@include transition-duration(0.5s);
 			float: left;
 			display: inline-block;
-			margin-right: 0.4em;
+			margin: 0 0.4em 0.4em 0;
 			@extend %caption-type;
 			
 			a {

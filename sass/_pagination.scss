@@ -11,14 +11,16 @@
 		top: 50%;
 		position: absolute;
 		
+		@include breakpoint($page-container) {
+			top: $header-height;
+		}
+		
 		&.prev {
 			left: 0;
-
 		}
 
 		&.next {
-			right: 0;
-			
+			right: 0;	
 		}
 		
 		&:hover {
