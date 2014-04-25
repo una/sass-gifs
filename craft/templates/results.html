@@ -1,13 +1,17 @@
 {% extends "_layout" %}
 
 {% block content %}
-<h1>Search Results</h1>
-
 {% set query = craft.request.getParam('q') %}
 {% set entries = craft.entries.search(query).order('score') %}
 
+<div class="header-home">
+    <!-- <img class="logo--color" src="images/sassgif-logo-full.png" alt=""> -->
+    <h1>"{{craft.request.getParam('q')}}"</h1>
+
 {% if entries|length %}
-    <p>{{ entries|length }} results:</p>
+
+    <h2 class="logo--color--subtitle">{% if entries|length %}We found {{ entries|length }} result{% if entries|length >1 %}s{%endif%}!{%endif%}</h2>
+</div>
 
     <ul class="lesson-list--results">
         {% for entry in entries %}
@@ -24,6 +28,7 @@
         {% endfor %}
     </ul>
 {% else %}
-    <p>Your search for “{{ query }}” didn’t return any results.</p>
+     <h2 class="logo--color--subtitle">Oops. We couldn't find anything!</h2>
+ </div>
 {% endif %}
 {% endblock %}
