@@ -18,6 +18,7 @@
 	}
 	
 	li {
+		@include transition-duration(0.5s);
 		font-size: 0.6em; 
 		padding: 0.5em 1em;
 		

@@ -38,19 +38,41 @@ article {
 	}
 }
 
+.more-links {
+	ul {
+		margin: -0.5em 0 1em;
+		line-height: 1;  
+	}
+
+	a {
+		font-size: 0.6em;
+		color: $color-primary;
+		
+		&:hover {
+			background-color: $color-primary;
+			color: $color-text-invert;
+		}
+	}
+}
+
 .tags {
 	@extend %row;
 	margin-bottom: 1em;
 	.tag-list {
 		li {
+			@include transition-duration(0.5s);
 			float: left;
 			display: inline-block;
-			// @extend %border-radius;
 			margin-right: 0.4em;
 			@extend %caption-type;
+			
 			a {
 				text-decoration: none;
 				color: $color-titles;
+			}
+
+			&:hover {
+				background: $color-background-shade;
 			}
 		}
 	} 
