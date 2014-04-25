@@ -62,6 +62,22 @@ strong {
 		              0 0 0 $color-background-shade,
 		              -1px 1px 0 white,
 		              5px 5px 0 $color-background-shade;
+		              
+		@include breakpoint($tab-vert) {
+			font-size: 3.5em;
+		}
+
+		@include breakpoint($small-tab) {
+			font-size: 3em;
+		}
+
+		@include breakpoint($phone-horiz) {
+			font-size: 2.4em;
+		}
+
+		@include breakpoint($phone-vert) {
+			font-size: 2em;
+		}
 	}
 
 	h2 {

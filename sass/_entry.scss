@@ -65,9 +65,26 @@ article {
 		margin: 1em 0;
 		color: $color-titles;
 		text-transform: uppercase;
+		line-height: 1;
 		
 		@include breakpoint($page-container) {
 			margin: 1.5em 0 1em;
+		}
+
+		@include breakpoint($tab-vert) {
+			font-size: 1em;
+		}
+
+		@include breakpoint($small-tab) {
+			font-size: 1.1em;
+		}
+
+		@include breakpoint($phone-horiz) {
+			font-size: 0.9em;
+		}
+
+		@include breakpoint($phone-vert) {
+			font-size: 0.8em;
 		}
 	}
 }
