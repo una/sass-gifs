@@ -73,6 +73,58 @@ class ElementsService extends BaseApplicationComponent
 	}
 
 	/**
+	 * Returns an element by its URI.
+	 *
+	 * @param string $uri
+	 * @param string|null $localeId
+	 * @return BaseElementModel|null
+	 */
+	public function getElementByUri($uri, $localeId = null, $enabledOnly = false)
+	{
+		if ($uri === '')
+		{
+			$uri = '__home__';
+		}
+
+		if (!$localeId)
+		{
+			$localeId = craft()->language;
+		}
+
+		// First get the element ID and type
+
+		$conditions = array('and',
+			'elements_i18n.uri = :uri',
+			'elements_i18n.locale = :locale'
+		);
+
+		$params = array(
+			':uri'    => $uri,
+			':locale' => $localeId
+		);
+
+		if ($enabledOnly)
+		{
+			$conditions[] = 'elements_i18n.enabled = 1';
+			$conditions[] = 'elements.enabled = 1';
+			$conditions[] = 'elements.archived = 0';
+		}
+
+		$result = craft()->db->createCommand()
+			->select('elements.id, elements.type')
+			->from('elements elements')
+			->join('elements_i18n elements_i18n', 'elements_i18n.elementId = elements.id')
+			->where($conditions, $params)
+			->queryRow();
+
+		if ($result)
+		{
+			// Return the actual element
+			return $this->getElementById($result['id'], $result['type'], $localeId);
+		}
+	}
+
+	/**
 	 * Returns the element type(s) used by the element of a given ID(s).
 	 *
 	 * @param int|array $elementId
@@ -867,13 +919,6 @@ class ElementsService extends BaseApplicationComponent
 				}
 
 				$mainLocaleId = $element->locale;
-				$mainSlug     = $element->slug;
-				$mainUri      = $element->uri;
-
-				if ($elementType->hasContent())
-				{
-					$mainContent = $element->getContent();
-				}
 
 				$locales = $element->getLocales();
 				$localeIds = array();
@@ -911,60 +956,68 @@ class ElementsService extends BaseApplicationComponent
 						$localeRecord->enabled   = $localeInfo['enabledByDefault'];
 					}
 
-					// Set the locale and its content on the element
-					$element->locale = $localeId;
+					// Is this the main locale?
+					$isMainLocale = ($localeId == $mainLocaleId);
 
-					if ($localeRecord->id && $localeRecord->locale != $mainLocaleId)
+					if ($isMainLocale)
 					{
-						// Keep the original slug
-						$element->slug = $localeRecord->slug;
+						$localizedElement = $element;
 					}
 					else
 					{
-						$element->slug = $mainSlug;
+						// Copy the element for this locale
+						$localizedElement = $element->copy();
+						$localizedElement->locale = $localeId;
+
+						if ($localeRecord->id)
+						{
+							// Keep the original slug
+							$localizedElement->slug = $localeRecord->slug;
+						}
+						else
+						{
+							// Default to the main locale's slug
+							$localizedElement->slug = $element->slug;
+						}
 					}
 
 					if ($elementType->hasContent())
 					{
-						if ($localeId == $mainLocaleId)
-						{
-							$content = $mainContent;
-						}
-						else
+						if (!$isMainLocale)
 						{
 							$content = null;
 
 							if (!$isNewElement)
 							{
 								// Do we already have a content row for this locale?
-								$content = craft()->content->getContent($element);
+								$content = craft()->content->getContent($localizedElement);
 							}
 
 							if (!$content)
 							{
-								$content = craft()->content->createContent($element);
-								$content->setAttributes($mainContent->getAttributes());
+								$content = craft()->content->createContent($localizedElement);
+								$content->setAttributes($element->getContent()->getAttributes());
 								$content->id = null;
 								$content->locale = $localeId;
 							}
+
+							$localizedElement->setContent($content);
 						}
 
-						$element->setContent($content);
-
-						if (!$content->id)
+						if (!$localizedElement->getContent()->id)
 						{
-							craft()->content->saveContent($element, false, false);
+							craft()->content->saveContent($localizedElement, false, false);
 						}
 					}
 
 					// Set a valid/unique slug and URI
-					ElementHelper::setValidSlug($element);
-					ElementHelper::setUniqueUri($element);
+					ElementHelper::setValidSlug($localizedElement);
+					ElementHelper::setUniqueUri($localizedElement);
 
-					$localeRecord->slug = $element->slug;
-					$localeRecord->uri  = $element->uri;
+					$localeRecord->slug = $localizedElement->slug;
+					$localeRecord->uri  = $localizedElement->uri;
 
-					if ($localeId == $mainLocaleId)
+					if ($isMainLocale)
 					{
 						$localeRecord->enabled = (bool) $element->localeEnabled;
 					}
@@ -979,23 +1032,6 @@ class ElementsService extends BaseApplicationComponent
 						// Don't bother with any of the other locales
 						break;
 					}
-
-					if ($localeId == $mainLocaleId)
-					{
-						// Remember the saved slug and URI
-						$mainSlug = $element->slug;
-						$mainUri  = $element->uri;
-					}
-				}
-
-				// Bring everything back to this locale
-				$element->locale = $mainLocaleId;
-				$element->slug   = $mainSlug;
-				$element->uri    = $mainUri;
-
-				if ($elementType->hasContent())
-				{
-					$element->setContent($mainContent);
 				}
 
 				if ($success)

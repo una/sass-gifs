@@ -286,8 +286,12 @@ class EntriesController extends BaseController
 			}
 		}
 
+		// Set the base CP edit URL
+		// - Can't just use the entry's getCpEditUrl() because that might include the locale ID when we don't want it
+		$variables['baseCpEditUrl'] = 'entries/'.$variables['section']->handle.'/{id}';
+
 		// Set the "Continue Editing" URL
-		$variables['continueEditingUrl'] = 'entries/'.$variables['section']->handle.'/{id}' .
+		$variables['continueEditingUrl'] = $variables['baseCpEditUrl'] .
 			(isset($variables['draftId']) ? '/drafts/'.$variables['draftId'] : '') .
 			(craft()->isLocalized() && craft()->getLanguage() != $variables['localeId'] ? '/'.$variables['localeId'] : '');
 
@@ -579,6 +583,11 @@ class EntriesController extends BaseController
 				$variables['entry']->sectionId = $variables['section']->id;
 				$variables['entry']->authorId = craft()->userSession->getUser()->id;
 				$variables['entry']->enabled = true;
+
+				if (!empty($variables['localeId']))
+				{
+					$variables['entry']->locale = $variables['localeId'];
+				}
 			}
 		}
 

@@ -275,12 +275,12 @@ body.rtl .content.has-sidebar .show-sidebar { right: -24px; }
 
 .content.has-sidebar .show-sidebar:hover { color: #0d78f2; }
 
-.content.has-sidebar .show-sidebar:before { font-family: 'Craft'; speak: none; -webkit-font-feature-settings: "liga", "dlig"; -moz-font-feature-settings: "liga=1, dlig=1"; -moz-font-feature-settings: "liga", "dlig"; -ms-font-feature-settings: "liga", "dlig"; -o-font-feature-settings: "liga", "dlig"; font-feature-settings: "liga", "dlig"; text-rendering: optimizeLegibility; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; -webkit-font-smoothing: subpixel-antialiased; display: inline-block; text-align: center; font-style: normal; vertical-align: middle; word-wrap: normal !important; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; width: 41px; line-height: 24px; }
-body.ltr .content.has-sidebar .show-sidebar:before { content: 'menurarr'; }
-body.rtl .content.has-sidebar .show-sidebar:before { content: 'menularr'; }
+.content.has-sidebar .show-sidebar:before { font-family: 'Craft'; speak: none; -webkit-font-feature-settings: "liga", "dlig"; -moz-font-feature-settings: "liga=1, dlig=1"; -moz-font-feature-settings: "liga", "dlig"; -ms-font-feature-settings: "liga", "dlig"; -o-font-feature-settings: "liga", "dlig"; font-feature-settings: "liga", "dlig"; text-rendering: optimizeLegibility; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; -webkit-font-smoothing: subpixel-antialiased; display: inline-block; text-align: center; font-style: normal; vertical-align: middle; word-wrap: normal !important; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; width: 43px; line-height: 24px; }
+body.ltr .content.has-sidebar .show-sidebar:before { content: 'menu rarr'; }
+body.rtl .content.has-sidebar .show-sidebar:before { content: 'menu larr'; }
 
-body.ltr .content.has-sidebar .show-sidebar.showing:before { content: 'menularr'; }
-body.rtl .content.has-sidebar .show-sidebar.showing:before { content: 'menurarr'; }
+body.ltr .content.has-sidebar .show-sidebar.showing:before { content: 'menu larr'; }
+body.rtl .content.has-sidebar .show-sidebar.showing:before { content: 'menu rarr'; }
 
 .content.has-sidebar .sidebar { position: absolute; top: -24px; padding: 24px; width: 170px; overflow: auto; }
 body.ltr .content.has-sidebar .sidebar { left: -218px; }

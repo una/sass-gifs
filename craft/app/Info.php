@@ -12,9 +12,9 @@ namespace Craft;
  */
 
 define('CRAFT_VERSION', '2.0');
-define('CRAFT_BUILD', '2536');
+define('CRAFT_BUILD', '2537');
 define('CRAFT_SCHEMA_VERSION', '2.0.0');
-define('CRAFT_RELEASE_DATE', '1397862616');
+define('CRAFT_RELEASE_DATE', '1398879247');
 define('CRAFT_MIN_BUILD_REQUIRED', '2461');
 define('CRAFT_MIN_BUILD_URL', 'http://download.buildwithcraft.com/craft/1.3/1.3.2461/Craft-1.3.2461.zip');
 define('CRAFT_TRACK', 'stable');

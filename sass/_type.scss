@@ -86,6 +86,14 @@ strong {
 		font-weight: 100;
 		margin: -0.5em auto 1em;
 		color: #699;
+
+		@include breakpoint($phone-horiz) {
+			font-size: 0.9em;
+		}
+
+		@include breakpoint($phone-vert) {
+			font-size: 0.8em;
+		}
 	}
 }
 

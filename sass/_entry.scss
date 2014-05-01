@@ -3,12 +3,13 @@
 	
 	img {
 		width: 50%;
-		padding: 5%;
+		padding: 0 0 0 5%;
 		@extend %fl-r;
 		
 		@include breakpoint($small-tab) {
 			float: none;
 			width: 100%;
+			padding: 5%;
 		}
 	}
 
@@ -36,7 +37,7 @@
 			}
 
 			@include breakpoint($tab-vert) {
-				font-size: 0.9em;
+				font-size: 0.8em;
 			}
 
 			@include breakpoint($small-tab) {
