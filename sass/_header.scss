@@ -15,6 +15,10 @@ header {
 	top: 0;
 	right: 1em;
 	
+	@include breakpoint($small) {
+		right: 0.5em;
+	}
+	
 	label {
 		position: absolute;
 		margin: 13px 0 0 -30px;
@@ -52,6 +56,10 @@ header {
 		-webkit-transition: all .5s;
 		-moz-transition: all .5s;
 		transition: all .5s;
+		
+		@include breakpoint($small) {
+			width: 5em;
+		}
 
 		&:focus {
 			width: 14em;

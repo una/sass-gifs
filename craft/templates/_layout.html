@@ -4,6 +4,12 @@
 	<meta charset="utf-8" />
 	<title>{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}</title>
 	<link rel="home" href="{{ siteUrl }}" />
+
+	<!-- MOBILE SETTINGS -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="white" />
+
 	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro:500|Radley:400,400italic' rel='stylesheet' type='text/css'>
 	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script src="/js/scripts.js"></script>
@@ -30,7 +36,7 @@
 		<ul>
 			{% for entry in craft.entries.section('Lessons').find() %}
 				<li>
-					<a href="/{{ entry.slug }}" {% if craft.request.firstSegment == 'entry.slug' %}class="active"{% endif %}>
+					<a href="/index.php/{{ entry.slug }}" {% if craft.request.firstSegment == 'entry.slug' %}class="active"{% endif %}>
 						{{ entry.title }}
 					</a>
 				</li>

@@ -8,7 +8,7 @@ footer {
    text-align: center;
    padding: 1em; 
    z-index: 3;
-   height: $footer-height;
+   min-height: $footer-height;
    font-size: 0.6em;
    
    a {
