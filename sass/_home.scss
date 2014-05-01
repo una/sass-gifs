@@ -8,7 +8,11 @@
 		padding: 1%;
 		margin-bottom: 2%;
 		
-		&:nth-child(2) {
+		&:hover {
+			box-shadow: 0 0 0 1px $color-background-shade inset;
+		}
+		
+		&:nth-child(3n+2) {
 			margin: 0 2%;
 			
 			@include breakpoint($tab-horiz) {
@@ -48,11 +52,16 @@
 	}
 }
 
-.logo--color {
-	max-width: 550px;
-	margin: 2em auto 0;
-	
-	&--subtitle {
-		font-size: 0.6em;
+.logo--color--subtitle {
+	font-size: 0.5em;
+	margin: 2em auto;
+		
+	a {
+		text-decoration: none;
+		color: $bouquet;
+		
+		&:hover {
+			background-color: $color-background-subtle;
+		}
 	}
 }

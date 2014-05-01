@@ -30,7 +30,7 @@
 		<ul>
 			{% for entry in craft.entries.section('Lessons').find() %}
 				<li>
-					<a href="{{ entry.slug }}" {% if craft.request.firstSegment == 'entry.slug' %}class="active"{% endif %}>
+					<a href="/{{ entry.slug }}" {% if craft.request.firstSegment == 'entry.slug' %}class="active"{% endif %}>
 						{{ entry.title }}
 					</a>
 				</li>
