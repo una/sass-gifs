@@ -8,7 +8,7 @@
 	</div>
 	<h3>The Newest Additions:</h3>
 	<ul class="lesson-list--home">
-		{% for entry in craft.entries.section('Lessons').limit(3).find() %}
+		{% for entry in craft.entries.section('Lessons') %}
 			<li>
 			<a href="{{ entry.url }}">
 				<figure>
